@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4730920521039632980}
   - component: {fileID: 1305284414289372006}
   - component: {fileID: 2959327171886233070}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8155499918858587167}
   - component: {fileID: 683702859513345663}
   - component: {fileID: 6460311623159085038}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 77640841718580260}
   - component: {fileID: 795193631891594868}
   - component: {fileID: 4264358711386798850}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4728395446482862328}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 5696519091603091046}
   - component: {fileID: 4887002181512545960}
   - component: {fileID: 5360374943065915176}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,9 +378,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2499726529031012109}
   - component: {fileID: 2856251124918878877}
-  m_Layer: 0
+  - component: {fileID: 464622802112257330}
+  m_Layer: 9
   m_Name: LandingPad
-  m_TagString: Untagged
+  m_TagString: LandingPad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,6 +414,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf38e1f4bc0e9fc45ac811755c1a0046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &464622802112257330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324027517948897215}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 3}
+  m_Center: {x: 0, y: 0, z: 1.5}
 --- !u!1 &7722749852577897433
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +446,7 @@ GameObject:
   - component: {fileID: 2389549681189890484}
   - component: {fileID: 6816874791647279704}
   - component: {fileID: 1776135149399193131}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
