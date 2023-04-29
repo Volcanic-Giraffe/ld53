@@ -16,10 +16,15 @@ public class Generator : Singleton<Generator>
     
     private void Start()
     {
+        StartCoroutine(GenerateCR());
+    }
+
+    private IEnumerator GenerateCR()
+    {
         GeneratePlanets();
 
         var start = _planets.PickRandom();
-        
+
         var launchPad = Prefabs.Instance.Produce<LaunchPad>();
         launchPad.transform.position = start.transform.position;
         launchPad.transform.rotation = Random.rotation;
@@ -27,10 +32,11 @@ public class Generator : Singleton<Generator>
 
         var ship = FindObjectOfType<Ship>();
         launchPad.Attach(ship);
-        
+
         var finish = _planets.PickRandom();
         finish.SetColor(Color.red);
-        
+        yield return new WaitForEndOfFrame();
+
         OnGenerationDone?.Invoke();
     }
 
