@@ -9,7 +9,7 @@ public class Ship : MonoBehaviour
     public Rigidbody RB { get => rb; }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
