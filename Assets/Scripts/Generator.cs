@@ -26,8 +26,7 @@ public class Generator : Singleton<Generator>
         Destroy(start.gameObject);
 
         var ship = FindObjectOfType<Ship>();
-        ship.transform.position = launchPad.transform.position;
-        ship.transform.rotation = launchPad.transform.rotation;
+        launchPad.Attach(ship);
         
         var finish = _planets.PickRandom();
         finish.SetColor(Color.red);
