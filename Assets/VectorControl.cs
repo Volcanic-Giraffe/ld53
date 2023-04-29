@@ -9,6 +9,7 @@ public class VectorControl : MonoBehaviour
     [SerializeField] float StrafePower = 300f;
     [SerializeField] float AlignSpeed = 100f;
     [SerializeField, Tooltip("True - forward, false - backward")] bool AlignMod = false;
+    [SerializeField, Tooltip("If closer than this to planet, and not going too fast - reorient to planet")] float ReorientDistance = 1f;
     private Vector3 _strafe;
 
     private CameraController _cam;
@@ -32,8 +33,10 @@ public class VectorControl : MonoBehaviour
     {
         if (_ship.Standby) return;
         RB.AddRelativeForce(_strafe * StrafePower * Time.fixedDeltaTime);
-        
-        var alignTarget = RB.velocity.magnitude > 1f ? RB.velocity : (_ship.ClosestPlanet.transform.position - transform.position);
+
+        var alignTarget = RB.velocity.magnitude < 1f && Vector3.Distance(_ship.ClosestPlanet.transform.position, transform.position) < ReorientDistance
+            ? RB.velocity
+            : -(_ship.ClosestPlanet.transform.position - transform.position);
         var sign = AlignMod ? 1f : -1f;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(sign * alignTarget, Vector3.up), Time.fixedDeltaTime * AlignSpeed);
     }
