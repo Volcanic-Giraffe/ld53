@@ -9,7 +9,7 @@ public class Planet : MonoBehaviour
 
     void Start()
     {
-        shape.localScale *= Random.Range(0.9f, 1.5f);
+        shape.localScale *= Random.Range(0.9f, 1.2f);
     }
 
     void Update()
