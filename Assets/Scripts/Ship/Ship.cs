@@ -7,7 +7,6 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     private Rigidbody rb;
-    private Planet[] _planets;
 
     public Rigidbody RB { get => rb; }
     public Planet ClosestPlanet { get => _closestPlanet; }
@@ -22,12 +21,13 @@ public class Ship : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Generator.Instance.OnGenerationDone += Instance_OnGenerationDone;
+
+        Objects.Instance.Ship = this;
     }
 
     private void Instance_OnGenerationDone()
     {
-        _planets = FindObjectsOfType<Planet>();
-        _closestPlanet = _planets[0];
+        _closestPlanet = Objects.Instance.Planets[0];
         _standby = false;
     }
 
@@ -56,7 +56,7 @@ public class Ship : MonoBehaviour
     {
         if (_standby) return;
         var minDist = 8000f;
-        foreach (var planet in _planets)
+        foreach (var planet in Objects.Instance.Planets)
         {
             var pDist = Vector3.Distance(transform.position, planet.transform.position);
             if (pDist < minDist)

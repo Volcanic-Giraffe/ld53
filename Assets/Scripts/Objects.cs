@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Objects : Singleton<Objects>
+{
+    // linked in code only
+    public Ship Ship;
+    public List<Planet> Planets = new();
+    public List<LandingPad> LandingPads = new();
+    
+    public void AddPlanet(Planet p)
+    {
+        Planets.Add(p);
+    }
+
+    public void RemovePlanet(Planet p)
+    {
+        Planets.Remove(p);
+    }
+
+    public void AddLandingPad(LandingPad lp)
+    {
+        LandingPads.Add(lp);
+    }
+
+    public void RemoveLandingPad(LandingPad lp)
+    {
+        LandingPads.Remove(lp);
+    }
+
+}
