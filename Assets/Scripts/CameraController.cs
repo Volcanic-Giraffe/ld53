@@ -6,8 +6,9 @@ public class CameraController : MonoBehaviour
 {
     private Ship ship;
 
-    private float rotationSpeed = 5f;
-    private float tiltSpeed = 7f;
+    [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float tiltSpeed = 7f;
+    [SerializeField] private float followDistance = 10f;
     
     void Start()
     {
@@ -18,11 +19,18 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         var target = ship.transform;
-        var targetPos = target.position - (target.forward * 10f);
+     
+        if (ship.RB.velocity.magnitude > 1f)
+        {
+            var direction = ship.RB.velocity.normalized;
+            if (direction == Vector3.zero) direction = transform.forward;
+            var targetPos = target.position - (direction * followDistance);
+            transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * tiltSpeed);
+        }
         
-        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * tiltSpeed);
-        transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, Time.deltaTime * rotationSpeed);
         
-        // transform.LookAt(target.transform);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, Time.deltaTime * rotationSpeed);
+        
+        transform.LookAt(target.transform);
     }
 }

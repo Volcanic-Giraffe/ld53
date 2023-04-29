@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LaunchPad : MonoBehaviour
 {
+    [SerializeField] float LaunchForce = 200f;
     private Ship _ship;
     
     public void Attach(Ship ship)
@@ -30,6 +31,7 @@ public class LaunchPad : MonoBehaviour
         if (_ship == null) return;
 
         _ship.RB.isKinematic = false;
+        _ship.RB.AddForce(_ship.transform.forward * LaunchForce, ForceMode.VelocityChange);
         _ship = null;
     }
 }
