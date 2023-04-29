@@ -6,11 +6,12 @@ public class AutoAlign : MonoBehaviour
 {
     private Rigidbody rb;
     public Rigidbody RB { get => rb; }
+    [SerializeField] bool AlignToVelocity = true;
     [SerializeField] float AlignSpeed = 100f;
-    [SerializeField, Tooltip("True - forward, false - backward")] bool AlignMod = false;
+    [SerializeField] bool ReorientToClosePlanet = true;
     [SerializeField, Tooltip("If closer than this to planet, and not going too fast - reorient to planet")] float MinReorientDistance = 0.5f;
     [SerializeField] float MinReorientSpeed = 0.5f;
-    
+
     private CameraController _cam;
     private Ship _ship;
 
@@ -26,12 +27,16 @@ public class AutoAlign : MonoBehaviour
     void FixedUpdate()
     {
         if (_ship.Standby) return;
-
-        var alignTarget = RB.velocity.magnitude < MinReorientSpeed 
-            && Vector3.Distance(_ship.ClosestPlanet.transform.position, transform.position) < MinReorientDistance
-            ? RB.velocity
-            : -(_ship.ClosestPlanet.transform.position - transform.position);
-        var sign = AlignMod ? 1f : -1f;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(sign * alignTarget, Vector3.up), Time.fixedDeltaTime * AlignSpeed);
+        var alignTarget = Vector3.zero;
+        if (AlignToVelocity) alignTarget = RB.velocity;
+        if (ReorientToClosePlanet)
+        {
+            if (RB.velocity.magnitude < MinReorientSpeed
+            && Vector3.Distance(_ship.ClosestPlanet.transform.position, transform.position) < MinReorientDistance)
+            {
+                alignTarget = -(_ship.ClosestPlanet.transform.position - transform.position);
+            }
+        }
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(alignTarget, Vector3.up), Time.fixedDeltaTime * AlignSpeed);
     }
 }

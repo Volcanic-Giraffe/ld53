@@ -31,6 +31,22 @@ public class Ship : MonoBehaviour
         _standby = false;
     }
 
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if(ClosestPlanet != null)
+        {
+            var size = 18f;
+            Gizmos.DrawSphere(ClosestPlanet.transform.position + Vector3.up * size, 1f);
+            Gizmos.DrawSphere(ClosestPlanet.transform.position - Vector3.up * size, 1f);
+            Gizmos.DrawSphere(ClosestPlanet.transform.position + Vector3.right * size, 1f);
+            Gizmos.DrawSphere(ClosestPlanet.transform.position - Vector3.right * size, 1f);
+            Gizmos.DrawSphere(ClosestPlanet.transform.position + Vector3.forward * size, 1f);
+            Gizmos.DrawSphere(ClosestPlanet.transform.position - Vector3.forward * size, 1f);
+        }
+    }
+#endif 
+
     private void Update()
     {
         FindClosestPlanet();

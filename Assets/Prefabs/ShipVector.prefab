@@ -200,10 +200,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4e528510f79e343a4a92d377c0c7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AlignToVelocity: 1
   AlignSpeed: 100
-  AlignMod: 1
-  MinReorientDistance: 0.5
-  MinReorientSpeed: 0.5
+  ReorientToClosePlanet: 1
+  MinReorientDistance: 30
+  MinReorientSpeed: 2
 --- !u!1 &740951836995057734
 GameObject:
   m_ObjectHideFlags: 0
