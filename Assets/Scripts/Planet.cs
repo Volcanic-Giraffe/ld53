@@ -9,7 +9,7 @@ public class Planet : MonoBehaviour
 
     void Start()
     {
-        shape.localScale *= Random.Range(0.9f, 1.2f);
+        shape.localScale = Vector3.one * (Consts.PlanetDiameter * Random.Range(0.8f, 1.2f));
     }
 
     void Update()
