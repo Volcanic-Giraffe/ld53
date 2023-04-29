@@ -16,6 +16,8 @@ public class MainEngine : MonoBehaviour
     private float _thrustTimer;
     [SerializeField] private int MouseButton;
 
+    [SerializeField] private EngineFx engineFx;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -47,11 +49,15 @@ public class MainEngine : MonoBehaviour
     private void StopThrust()
     {
         _thrust = false;
+        
+        engineFx.Stop();
     }
 
     private void DoThrust()
     {
         _thrust = true;
+        
+        engineFx.Start();
     }
 
     // Update is called once per frame
