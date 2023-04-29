@@ -539,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5bc8333f8dd8634e82af1714b4a287c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ship: {fileID: 0}
+  ship: {fileID: 1478963722}
   PullToCenter: 0.1
   StartImpulse: 10
 --- !u!1 &832575517
@@ -831,6 +831,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1478963722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1250245088087017280, guid: cc2dda1c7d541d741a3601bf048e8afa,
+    type: 3}
+  m_PrefabInstance: {fileID: 155491028687127659}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577a4fdecb47db14a9de0d9ca3c1c32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &155491028687127659
 PrefabInstance:
   m_ObjectHideFlags: 0
