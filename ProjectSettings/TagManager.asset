@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ship
   - Planet
+  - LaunchPad
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - Ship
   - Planet
-  - 
+  - LaunchPad
   - 
   - 
   - 

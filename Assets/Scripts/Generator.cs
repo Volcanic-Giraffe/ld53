@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Generator : MonoBehaviour
+public class Generator : Singleton<Generator>
 {
     public float Radius;
     public int Count;
+
+    public event Action OnGenerationDone;
 
     private void Start()
     {
@@ -22,13 +24,19 @@ public class Generator : MonoBehaviour
         }
 
         var start = planets.PickRandom();
-        start.SetColor(Color.green);
+        
+        var launchPad = Prefabs.Instance.Produce<LaunchPad>();
+        launchPad.transform.position = start.transform.position;
+        launchPad.transform.rotation = Random.rotation;
+        Destroy(start.gameObject);
 
         var ship = FindObjectOfType<Ship>();
-
-        ship.transform.position = start.transform.position + Vector3.up * 10f;
+        ship.transform.position = launchPad.transform.position;
+        ship.transform.rotation = launchPad.transform.rotation;
         
         var finish = planets.PickRandom();
         finish.SetColor(Color.red);
+        
+        OnGenerationDone?.Invoke();
     }
 }

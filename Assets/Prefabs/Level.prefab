@@ -59,6 +59,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5bc8333f8dd8634e82af1714b4a287c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ship: {fileID: 0}
   PullToCenter: 1
   StartImpulse: 100
