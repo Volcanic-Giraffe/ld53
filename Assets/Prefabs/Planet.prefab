@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7507975107192193386}
   - component: {fileID: 7494869846902894995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Planet
-  m_TagString: Untagged
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 1225575331856229694}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7494869846902894995
 MonoBehaviour:
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 8355544575671442731}
   - component: {fileID: 5983306978452305858}
   - component: {fileID: 6645998997929030776}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

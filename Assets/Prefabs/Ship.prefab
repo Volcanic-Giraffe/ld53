@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2862093806041536174}
   - component: {fileID: 1250245088087017280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ship
-  m_TagString: Untagged
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 3646319323990496555}
   - component: {fileID: 2360989238572376651}
   - component: {fileID: 217902941497931646}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
