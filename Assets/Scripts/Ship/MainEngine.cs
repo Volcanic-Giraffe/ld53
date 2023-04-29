@@ -6,25 +6,33 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class MainEngine : MonoBehaviour
 {
-    private Rigidbody rb;
-    public Rigidbody RB { get => rb; }
+    public Ship Ship { get; private set; }
+    public Rigidbody RB { get; private set; }
+
     [SerializeField] float EngineImpulse = 300f;
     [SerializeField, Tooltip("How much time till full thrust")] float ThrustAccelerationTime = 1f;
     [SerializeField, Tooltip("How thrust will grow over acc. time")] AnimationCurve ThrustAccelerationProfile;
     private bool _thrust;
     private float _thrustTimer;
     [SerializeField] private int MouseButton;
+
     // Start is called before the first frame update
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        Ship = GetComponentInParent<Ship>();
+        RB = GetComponentInParent<Rigidbody>();
     }
 
     public float CurrentThrustPower => ThrustAccelerationProfile.Evaluate(_thrustTimer / ThrustAccelerationTime);
 
     private void Update()
     {
-        if (Input.GetMouseButton(MouseButton))
+        if (_thrust)
+        {
+            Ship.Fuel -= Time.deltaTime;
+        }
+        
+        if (Input.GetMouseButton(MouseButton) && Ship.Fuel > 0f)
         {
             DoThrust();
         }

@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577a4fdecb47db14a9de0d9ca3c1c32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FuelMax: 30
+  Fuel: 30
   VelocityLimit: 80
 --- !u!54 &3620783379327781944
 Rigidbody:

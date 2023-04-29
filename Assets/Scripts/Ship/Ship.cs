@@ -6,6 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Ship : MonoBehaviour
 {
+    [SerializeField] public float FuelMax;
+    [SerializeField] public float Fuel;
+
+    public float FuelRatio => FuelMax > 0 ? Fuel / FuelMax : 0f;
+    
     private Rigidbody rb;
 
     public Rigidbody RB { get => rb; }
