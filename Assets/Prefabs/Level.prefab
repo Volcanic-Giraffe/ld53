@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb561104c15ee0d41994f28a6eda2fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ship: {fileID: 0}
+  Planets: []
+  LandingPads: []
 --- !u!1 &4184808597380598101
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,6 +58,7 @@ GameObject:
   - component: {fileID: 8768828788526613121}
   - component: {fileID: 5243360140435572704}
   - component: {fileID: 2895317338354985963}
+  - component: {fileID: 774639070959778882}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -92,7 +96,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Radius: 60
   Count: 50
-  Deliveries: 3
 --- !u!114 &2895317338354985963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,3 +110,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PullToCenter: 1
   StartImpulse: 100
+--- !u!114 &774639070959778882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184808597380598101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0067a9f1b8bf73c479ab6fb7d8faea32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deliveries: 3

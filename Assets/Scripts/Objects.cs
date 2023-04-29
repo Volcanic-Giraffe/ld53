@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Objects : Singleton<Objects>
 {
+    [Header("DO NOT LINK THESE OBJECTS IN EDITOR")]
     // linked in code only
     public Ship Ship;
     public List<Planet> Planets = new();

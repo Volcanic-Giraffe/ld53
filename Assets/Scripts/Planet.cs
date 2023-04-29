@@ -37,6 +37,7 @@ public class Planet : MonoBehaviour
     public void AttachPad(LandingPad lp)
     {
         LandingPad = lp;
+        lp.Planet = this;
 
         lp.transform.SetParent(transform);
         

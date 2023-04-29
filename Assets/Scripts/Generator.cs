@@ -10,8 +10,6 @@ public class Generator : Singleton<Generator>
     public float Radius;
     public int Count;
 
-    public int Deliveries;
-    
     public event Action OnGenerationDone;
 
     private List<Planet> _planets = new();
@@ -25,15 +23,6 @@ public class Generator : Singleton<Generator>
     {
         GeneratePlanets();
 
-        for (int i = 0; i < Deliveries; i++)
-        {
-            var landingPad = Prefabs.Instance.Produce<LandingPad>();
-            var planet = _planets.Where(p => p.LandingPad == null).PickRandom();
-
-            planet.AttachPad(landingPad);
-            planet.SetColor(Color.red);
-        }
-        
         var start = _planets.Where(p => p.LandingPad == null).PickRandom();
 
         var launchPad = Prefabs.Instance.Produce<LaunchPad>();

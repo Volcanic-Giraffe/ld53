@@ -6,9 +6,13 @@ using UnityEngine;
 
 public class LandingPad : MonoBehaviour
 {
+    [SerializeField] private Transform mountPoint;
+    
     private Ship _ship;
     private bool _shipLanded;
     private bool _visited;
+
+    public Planet Planet { get; set; }
     
     private void Awake()
     {
@@ -35,12 +39,16 @@ public class LandingPad : MonoBehaviour
             _ship = ship;
             _visited = true;
 
-            ship.transform.DOMove(transform.position, Consts.LandingPadLandingTime).OnComplete(() =>
+            ship.transform.DOMove(mountPoint.position, Consts.LandingPadLandingTime).OnComplete(() =>
             {
                 _shipLanded = true;
+                Planet.SetColor(Color.green);
+                
+                LevelScenario.Instance.OnDeliveryMade(this);
+                
             });
 
-            ship.transform.DORotateQuaternion(transform.rotation, Consts.LandingPadLandingTime * 0.5f);
+            ship.transform.DORotateQuaternion(mountPoint.rotation, Consts.LandingPadLandingTime * 0.5f);
         }
     }
     
