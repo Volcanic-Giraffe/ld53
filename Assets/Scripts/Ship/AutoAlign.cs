@@ -37,6 +37,7 @@ public class AutoAlign : MonoBehaviour
                 alignTarget = -(_ship.ClosestPlanet.transform.position - transform.position);
             }
         }
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(alignTarget, Vector3.up), Time.fixedDeltaTime * AlignSpeed);
+        if (alignTarget != Vector3.zero)
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(alignTarget, Vector3.up), Time.fixedDeltaTime * AlignSpeed);
     }
 }

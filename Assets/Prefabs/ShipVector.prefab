@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AlignToVelocity: 1
   AlignSpeed: 100
-  ReorientToClosePlanet: 1
+  ReorientToClosePlanet: 0
   MinReorientDistance: 30
   MinReorientSpeed: 2
 --- !u!1 &740951836995057734
