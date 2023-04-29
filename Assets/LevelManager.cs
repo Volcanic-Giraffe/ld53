@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        ship.RB.AddForce(Random.onUnitSphere * StartImpulse, ForceMode.VelocityChange);
+        
     }
 
     // Update is called once per frame

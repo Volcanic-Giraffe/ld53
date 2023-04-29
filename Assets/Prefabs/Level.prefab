@@ -61,4 +61,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ship: {fileID: 0}
   PullToCenter: 1
-  StartImpulse: 10
+  StartImpulse: 100
