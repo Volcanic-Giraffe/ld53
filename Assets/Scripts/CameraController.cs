@@ -14,7 +14,9 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = ship.transform.forward + Vector3.back * 10f;
-        transform.LookAt(ship.transform);
+        var target = ship.transform;
+        
+        transform.position =  target.position - (target.forward * 10f);
+        transform.transform.LookAt(target);
     }
 }
