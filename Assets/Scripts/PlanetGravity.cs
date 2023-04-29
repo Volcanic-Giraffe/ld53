@@ -18,10 +18,10 @@ public class PlanetGravity : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 dist = transform.position - ship.position;
         Vector3 dir = dist.normalized;
-        ship.AddForce((dir * Gravity) / dist.sqrMagnitude);
+        ship.AddForce((Time.fixedDeltaTime * dir * Gravity) / dist.sqrMagnitude);
     }
 }
