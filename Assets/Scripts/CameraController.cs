@@ -5,6 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     private Ship ship;
+
+    private float rotationSpeed = 5f;
+    private float tiltSpeed = 7f;
     
     void Start()
     {
@@ -15,8 +18,9 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         var target = ship.transform;
+        var targetPos = target.position - (target.forward * 10f);
         
-        transform.position =  target.position - (target.forward * 10f);
-        transform.transform.LookAt(target);
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * tiltSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, Time.deltaTime * rotationSpeed);
     }
 }
