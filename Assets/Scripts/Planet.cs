@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class Planet : MonoBehaviour
 {
+    [SerializeField] private Transform shape;
+
     void Start()
     {
-        
+        shape.localScale *= Random.Range(0.9f, 1.5f);
     }
 
     void Update()
