@@ -10,7 +10,7 @@ public class Ship : MonoBehaviour
     private Planet[] _planets;
 
     public Rigidbody RB { get => rb; }
-    public Planet ClosestPlanet { get => _closestPlanet;  }
+    public Planet ClosestPlanet { get => _closestPlanet; }
     private bool _standby = true;
     public bool Standby => _standby;
 
@@ -34,9 +34,9 @@ public class Ship : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        if(ClosestPlanet != null)
+        if (ClosestPlanet != null)
         {
-            var size = 18f;
+            var size = Consts.PlanetDiameter * 1.2f;
             Gizmos.DrawSphere(ClosestPlanet.transform.position + Vector3.up * size, 1f);
             Gizmos.DrawSphere(ClosestPlanet.transform.position - Vector3.up * size, 1f);
             Gizmos.DrawSphere(ClosestPlanet.transform.position + Vector3.right * size, 1f);
@@ -71,5 +71,5 @@ public class Ship : MonoBehaviour
     {
         if (RB.velocity.magnitude > VelocityLimit) RB.velocity = RB.velocity.normalized * VelocityLimit;
     }
-    
+
 }
