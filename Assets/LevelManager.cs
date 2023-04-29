@@ -18,6 +18,6 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        ship.RB.AddForce(-ship.transform.position * PullToCenter * Time.fixedDeltaTime);
+        ship.RB.AddForce(PullToCenter * Time.fixedDeltaTime * -ship.transform.position);
     }
 }
