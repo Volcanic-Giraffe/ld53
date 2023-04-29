@@ -77,4 +77,10 @@ public class Ship : MonoBehaviour
         if (RB.velocity.magnitude > VelocityLimit) RB.velocity = RB.velocity.normalized * VelocityLimit;
     }
 
+    public void Refuel(float amount)
+    {
+        Fuel += amount;
+
+        Fuel = Mathf.Clamp(Fuel, 0f, FuelMax);
+    }
 }

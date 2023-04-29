@@ -10,6 +10,8 @@ public class Generator : Singleton<Generator>
     public float Radius;
     public int Count;
 
+    public int FuelPickupCount;
+    
     public event Action OnGenerationDone;
 
     private List<Planet> _planets = new();
@@ -32,7 +34,14 @@ public class Generator : Singleton<Generator>
 
         var ship = Objects.Instance.Ship;
         launchPad.Attach(ship);
-        
+
+        for (int i = 0; i < FuelPickupCount; i++)
+        {
+            var planet = _planets.Where(p=> p.LandingPad == null).PickRandom();
+            
+            var pickup = Prefabs.Instance.Produce<FuelPickup>();
+            pickup.transform.position = planet.transform.position + Vector3.up * planet.Diameter * 0.6f;
+        }
         
         yield return new WaitForEndOfFrame();
 

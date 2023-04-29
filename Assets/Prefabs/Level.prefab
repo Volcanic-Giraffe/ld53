@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Radius: 60
   Count: 50
+  FuelPickupCount: 5
 --- !u!114 &2895317338354985963
 MonoBehaviour:
   m_ObjectHideFlags: 0

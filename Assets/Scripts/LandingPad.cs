@@ -7,6 +7,8 @@ using UnityEngine;
 public class LandingPad : MonoBehaviour
 {
     [SerializeField] private Transform mountPoint;
+
+    [SerializeField] private float refuelRate; // per second
     
     private Ship _ship;
     private bool _shipLanded;
@@ -24,6 +26,11 @@ public class LandingPad : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Deploy();
+        }
+
+        if (_ship != null)
+        {
+            _ship.Refuel(refuelRate * Time.deltaTime);
         }
     }
     private void OnTriggerEnter(Collider other)
