@@ -58,7 +58,7 @@ public class Generator : Singleton<Generator>
             planet.transform.position = Random.insideUnitSphere * Radius;
 
             var attempts = 10f;
-            while (_planets.Any(p => Vector3.Distance(planet.transform.position, p.transform.position) < 10f) && attempts > 0)
+            while (_planets.Any(p => Vector3.Distance(planet.transform.position, p.transform.position) < (Radius / 5f)) && attempts > 0)
             {
                 attempts -= 1;
                 

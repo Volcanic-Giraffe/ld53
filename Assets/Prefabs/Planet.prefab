@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15124633e9152ef4193f3c823b70de55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gravity: 5000
+  Gravity: 3000
   shape: {fileID: 1225575331856229694}
 --- !u!1 &5347512766818721983
 GameObject:

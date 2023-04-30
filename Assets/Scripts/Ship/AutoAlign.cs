@@ -29,7 +29,7 @@ public class AutoAlign : MonoBehaviour
         if (_ship.Standby) return;
         var alignTarget = Vector3.zero;
         if (AlignToVelocity) alignTarget = RB.velocity;
-        if (ReorientToClosePlanet)
+        if (ReorientToClosePlanet && !Input.GetMouseButton(1) && !Input.GetMouseButton(0))
         {
             if (RB.velocity.magnitude < MinReorientSpeed
             && Vector3.Distance(_ship.ClosestPlanet.transform.position, transform.position) < MinReorientDistance)
@@ -38,6 +38,8 @@ public class AutoAlign : MonoBehaviour
             }
         }
         if (alignTarget != Vector3.zero)
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(alignTarget, Vector3.up), Time.fixedDeltaTime * AlignSpeed);
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(alignTarget, _cam.transform.up), Time.fixedDeltaTime * AlignSpeed);
+        }
     }
 }

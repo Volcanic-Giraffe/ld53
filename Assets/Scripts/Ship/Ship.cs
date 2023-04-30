@@ -29,6 +29,8 @@ public class Ship : MonoBehaviour
 
     private float _invulnerabilityTimer;
 
+    public float Velocity => rb.velocity.magnitude;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -89,7 +91,7 @@ public class Ship : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.impulse.magnitude > 1f)
+        if (other.impulse.magnitude > 3f)
         {
             var dmgFormula = 10f + other.impulse.magnitude * 0.2f;
 

@@ -9,6 +9,7 @@ public class LevelUI : Singleton<LevelUI>
     [SerializeField] private Slider fuelBar;
     [SerializeField] private Slider hullBar;
     [SerializeField] private TextMeshProUGUI deliveryBar;
+    [SerializeField] private TextMeshProUGUI speedBar;
 
     private Ship _ship;
 
@@ -37,6 +38,7 @@ public class LevelUI : Singleton<LevelUI>
         
         fuelBar.SetValueWithoutNotify(_ship.FuelRatio);
         hullBar.SetValueWithoutNotify(_ship.HealthRatio);
+        speedBar.SetText($"{_ship.Velocity:0.0} ms");
         
     }
 
