@@ -19,8 +19,8 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // OrientToVelocity();
-        OrientByMouse();
+        OrientToVelocity();
+        //OrientByMouse();
         transform.LookAt(ship.transform);
     }
 
