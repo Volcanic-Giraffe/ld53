@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 668006190260041841}
   - component: {fileID: 2043247216997933191}
   - component: {fileID: 5426954737093032976}
+  - component: {fileID: 3973728816799561184}
   m_Layer: 8
   m_Name: LaunchPad
   m_TagString: LaunchPad
@@ -74,6 +75,28 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3973728816799561184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011904187352782042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8715127e10bef994698ce5922a5392b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Groups:
+  - Group:
+    - {fileID: 4878841443661368280}
+    - {fileID: 3612967932880305556}
+  - Group:
+    - {fileID: 3380166448888758918}
+    - {fileID: 972484681141839129}
+  GroupEnabledInterval: 1
+  OnMaterial: {fileID: 2100000, guid: e61fa1618d1c89a41bace379c3059d94, type: 2}
+  OffMaterial: {fileID: 2100000, guid: 28fd53da7f312914e84c78103f73670a, type: 2}
 --- !u!1 &2886675723009093193
 GameObject:
   m_ObjectHideFlags: 0
