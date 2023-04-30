@@ -29,4 +29,9 @@ public class EngineFx : MonoBehaviour
         asThrust.DOKill();
         asThrust.DOFade(0.5f, 0.23f);
     }
+
+    private void OnDestroy()
+    {
+        asThrust.DOKill();
+    }
 }
