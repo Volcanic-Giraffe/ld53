@@ -242,9 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d981615871587fc49bf25d30c5959bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScreenSize: {x: 42, y: 42}
   container: {fileID: 5568220057510447507}
   distanceText: {fileID: 6935615803078317428}
-  ScreenSize: {x: 42, y: 42}
 --- !u!1 &3361848167446178979
 GameObject:
   m_ObjectHideFlags: 0

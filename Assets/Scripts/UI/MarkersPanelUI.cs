@@ -48,7 +48,7 @@ public class MarkersPanelUI : Singleton<MarkersPanelUI>
         
         foreach (var marker in _markers)
         {
-            marker.transform.position = MarkerPosition(marker);
+            marker.SetPosition(MarkerPosition(marker));
             marker.SetDistance(MarkerDistance(marker));
         }
     }
