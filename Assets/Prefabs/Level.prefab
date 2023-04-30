@@ -97,6 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Radius: 100
   Count: 50
+  ringPrefab: {fileID: 2831888060389863464, guid: abf8beb836d26084ca1fed469f808b50,
+    type: 3}
   FuelPickupCount: 12
 --- !u!114 &2895317338354985963
 MonoBehaviour:
@@ -124,4 +126,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0067a9f1b8bf73c479ab6fb7d8faea32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deliveries: 3
