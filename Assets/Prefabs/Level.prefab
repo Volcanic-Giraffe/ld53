@@ -47,6 +47,7 @@ MonoBehaviour:
   Ship: {fileID: 0}
   Planets: []
   LandingPads: []
+  LaunchPads: []
 --- !u!1 &4184808597380598101
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,9 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee64d527b98ed914da8434655ca15b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 60
+  Radius: 120
   Count: 50
-  FuelPickupCount: 5
+  FuelPickupCount: 12
 --- !u!114 &2895317338354985963
 MonoBehaviour:
   m_ObjectHideFlags: 0

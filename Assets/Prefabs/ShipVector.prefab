@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3998937812077811852}
   - component: {fileID: 220592358097900705}
   - component: {fileID: 5635904980444869047}
+  - component: {fileID: 746552123852321416}
   m_Layer: 6
   m_Name: ShipVector
   m_TagString: Ship
@@ -68,7 +69,7 @@ Rigidbody:
   m_GameObject: {fileID: 213727616505535169}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.5
+  m_Drag: 0.4
   m_AngularDrag: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -160,8 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210766d1134ad6f479cd85bcc4e5f799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StrafePower: 50
-  camSpace: 1
+  StrafePower: 200
+  camSpace: 0
 --- !u!114 &220592358097900705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,10 +217,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AlignToVelocity: 1
-  AlignSpeed: 100
-  ReorientToClosePlanet: 0
-  MinReorientDistance: 30
-  MinReorientSpeed: 2
+  AlignSpeed: 150
+  ReorientToClosePlanet: 1
+  MinReorientDistance: 12
+  MinReorientSpeed: 8
+--- !u!114 &746552123852321416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213727616505535169}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a858a42b8702d941bea26c864403178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Auto: 0
+  AlignSpeed: 150
+  MouseButton: 1
 --- !u!1 &740951836995057734
 GameObject:
   m_ObjectHideFlags: 0
