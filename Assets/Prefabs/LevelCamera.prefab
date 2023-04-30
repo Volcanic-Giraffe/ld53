@@ -152,3 +152,4 @@ MonoBehaviour:
   rotationSpeed: 5
   tiltSpeed: 7
   followDistance: 4
+  mouseControlSpeed: 3
