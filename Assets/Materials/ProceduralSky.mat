@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ProceduralSky
-  m_Shader: {fileID: -6465566751694194690, guid: 6f8358b61eb638c49ae56bd1b291da25,
+  m_Shader: {fileID: -6465566751694194690, guid: a60ebad0ea5a4dc45bda1f6cedf42151,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -90,20 +90,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_00537c7a0d274c3cb79ca8517c3fb28f: 0.43
-    - Vector1_0f39ee1de221432481db43bd9d43eb07: 0.01
+    - Vector1_00537c7a0d274c3cb79ca8517c3fb28f: 2.77
+    - Vector1_0f39ee1de221432481db43bd9d43eb07: 0.042
     - Vector1_4a3f676a1a89494ba6f819b04595a1d9: 10
     - Vector1_5006A6DB: 0.47
-    - Vector1_5997b464c50b4908b8354448bda52f85: 0
+    - Vector1_5997b464c50b4908b8354448bda52f85: 0.67
     - Vector1_6E1A052F: 14.9
-    - Vector1_7c55d263fb694253a69f7fbfb524a7f4: 0
+    - Vector1_7c55d263fb694253a69f7fbfb524a7f4: -0.25
     - Vector1_9A47BD85: 0.218
     - Vector1_D530AAF: 49.77
     - Vector1_D956D67B: 0.449
-    - Vector1_b59fee749a6b402c8ebe3e74b4223023: 0.1
-    - Vector1_b66af5b4685e476682d3107276078692: 0
+    - Vector1_b59fee749a6b402c8ebe3e74b4223023: 0.044
+    - Vector1_b66af5b4685e476682d3107276078692: -0.69
     - Vector1_de5da6c4ce54410dadbbcf18d8515c4b: 0.2
-    - Vector1_f42b54717476460cb93591a916ef57e3: 0
+    - Vector1_f42b54717476460cb93591a916ef57e3: 0.81
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -138,13 +138,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_4f325e100b17469cbb5fb703f9f87968: {r: 0, g: 0, b: 0, a: 0}
-    - Color_a3449084748b43c88c1c168f258322c4: {r: 0.17181376, g: 0.9034966, b: 0.9339623,
+    - Color_4f325e100b17469cbb5fb703f9f87968: {r: 1, g: 1, b: 1, a: 0}
+    - Color_a3449084748b43c88c1c168f258322c4: {r: 0.17254901, g: 0.93333334, b: 0.8578575,
         a: 0}
-    - Color_b30ae0f6a8cd4e6082afc93a28139dae: {r: 0.24350297, g: 0.54916084, b: 0.9056604,
+    - Color_b30ae0f6a8cd4e6082afc93a28139dae: {r: 0.48998755, g: 0.5884341, b: 0.7264151,
         a: 0}
-    - Vector3_5ded9c6d3c664e7088e683cd4d068f23: {r: 0, g: 1, b: 0, a: 0}
-    - Vector3_84ffe98a99314939807d1e8c3dddbbea: {r: 0, g: 0, b: 0, a: 0}
+    - Vector3_5ded9c6d3c664e7088e683cd4d068f23: {r: 1, g: 0, b: 0, a: 0}
+    - Vector3_84ffe98a99314939807d1e8c3dddbbea: {r: 1.15, g: 0.03, b: -0.06, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
