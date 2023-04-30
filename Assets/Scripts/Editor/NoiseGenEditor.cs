@@ -13,7 +13,8 @@ namespace Editor
             InspectorElement.FillDefaultInspector(gui, serializedObject, this);
             gui.Add(new Button(() =>
             {
-                (this.target as PlanetGenerator).Generate();
+                var ng = (this.target as PlanetGenerator);
+                ng.StartCoroutine(ng.Generate());
             })
             {
                 text = "Generate"
@@ -22,7 +23,7 @@ namespace Editor
             {
                 var ng = (this.target as PlanetGenerator);
                 ng.seed = (uint)(Random.value * 100000);
-                ng.Generate();
+                ng.StartCoroutine(ng.Generate());
             })
             {
                 text = "Generate Random Seed"
