@@ -17,7 +17,7 @@ public class MainEngine : MonoBehaviour
     [SerializeField] private int MouseButton;
     [SerializeField] private KeyCode Button;
 
-    [SerializeField] private EngineFx engineFx;
+    [SerializeField] private EngineFx[] engineFx;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,14 +54,14 @@ public class MainEngine : MonoBehaviour
     {
         _thrust = false;
 
-        engineFx.Stop();
+        foreach(var ef in engineFx) ef.Stop();
     }
 
     private void DoThrust()
     {
         _thrust = true;
 
-        engineFx.Start();
+        foreach (var ef in engineFx) ef.Start();
     }
 
     // Update is called once per frame
