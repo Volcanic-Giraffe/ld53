@@ -20,7 +20,13 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(orientToVelocity) DoOrientToVelocity();
+        if (ship.Standby)
+        {
+            transform.position = ship.transform.position - (ship.transform.forward * followDistance * 2f);
+            transform.LookAt(ship.transform, transform.up);
+            return;
+        }
+        if (orientToVelocity) DoOrientToVelocity();
         if(orientByMouse) DoOrientByMouse();
         var targetPos = ship.transform.position + (currentDirection * followDistance);
         transform.position = targetPos;

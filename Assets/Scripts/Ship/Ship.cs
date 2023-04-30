@@ -40,10 +40,14 @@ public class Ship : MonoBehaviour
         Objects.Instance.Ship = this;
     }
 
+    public void Launch()
+    {
+        _standby = false;
+    }
+
     private void Instance_OnGenerationDone()
     {
         _closestPlanet = Objects.Instance.Planets[0];
-        _standby = false;
     }
 
 #if UNITY_EDITOR

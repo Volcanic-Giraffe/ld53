@@ -7,6 +7,8 @@ using UnityEngine;
 public class GyroControl : MonoBehaviour
 {
     private Rigidbody rb;
+    private Ship _ship;
+
     public Rigidbody RB { get => rb; }
     [SerializeField] float GyroPower = 5f;
     private Vector2 _rotation;
@@ -17,11 +19,13 @@ public class GyroControl : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        _ship = GetComponent<Ship>();
         _cam = FindObjectOfType<CameraController>();
     }
 
     private void Update()
     {
+        if (_ship.Standby) return;
         _rotation = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 

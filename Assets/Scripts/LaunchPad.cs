@@ -42,6 +42,7 @@ public class LaunchPad : MonoBehaviour
 
         _ship.RB.isKinematic = false;
         _ship.RB.AddForce(_ship.transform.forward * LaunchForce, ForceMode.VelocityChange);
+        _ship.Launch();
         _ship = null;
         
         LevelScenario.Instance.DeployedFromLaunchPad();
