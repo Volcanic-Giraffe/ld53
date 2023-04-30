@@ -31,7 +31,8 @@ public class MarkerItemUI : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector2.Lerp(transform.position, _targetPos, 5f * Time.deltaTime);
+        // Feels drunk
+        transform.position = _targetPos; // Vector2.Lerp(transform.position, _targetPos, 5f * Time.deltaTime);
     }
 
     public void SetPosition(Vector2 screenPos)

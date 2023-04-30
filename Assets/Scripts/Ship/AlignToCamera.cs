@@ -28,6 +28,6 @@ public class AlignToCamera : MonoBehaviour
         var alignTarget = rb.position - _cam.transform.position;
         
         if ((Auto || Input.GetMouseButton(MouseButton)) && alignTarget != Vector3.zero)
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(alignTarget, Vector3.up), Time.fixedDeltaTime * AlignSpeed);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(alignTarget, _cam.transform.up), Time.fixedDeltaTime * AlignSpeed);
     }
 }
