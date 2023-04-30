@@ -22,6 +22,7 @@ public class CameraController : MonoBehaviour
     {
         if (ship.Standby)
         {
+            currentDirection = (transform.position - ship.transform.position).normalized;
             transform.position = ship.transform.position - (ship.transform.forward * followDistance * 2f);
             transform.LookAt(ship.transform, transform.up);
             return;
