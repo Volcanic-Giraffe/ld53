@@ -26,7 +26,7 @@ public class GameOverUI : Singleton<GameOverUI>
 
     private void Setup()
     {
-        LevelScenario.Instance.OnReturnedToLaunch += ShowWin;
+        LevelScenario.Instance.OnCompletedAllQuests += ShowWin;
     }
 
     public void ShowWin()
