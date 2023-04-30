@@ -14,7 +14,9 @@ public enum QuestType
 public class DeliveryQuest
 {
     public int Count;
+    public int Spawned;
     public int Completed;
+    public bool MustVisitLaunchPad;
     public QuestType Type;
 
     public bool Done => Count == Completed;
@@ -28,12 +30,14 @@ public class LevelScenario : Singleton<LevelScenario>
         {
             Count = 3,
             Completed = 0,
+            MustVisitLaunchPad = true,
             Type = QuestType.FloatingPackage
         },
         new ()
         {
             Count = 3,
             Completed = 0,
+            MustVisitLaunchPad = true,
             Type = QuestType.LandingPad
         },
         new ()
@@ -51,6 +55,7 @@ public class LevelScenario : Singleton<LevelScenario>
 
     public event Action OnDeliveryMade;
     public event Action OnReturnedToLaunch;
+    public event Action OnCompletedAllQuests;
 
     private bool _started;
     private bool _completed;
@@ -60,6 +65,9 @@ public class LevelScenario : Singleton<LevelScenario>
 
     private float _shipDiedTimer;
     private float _shipLowFuelTimer;
+
+
+    private List<Vector3> _occupiedPoints = new ();
     
     void Start()
     {
@@ -74,6 +82,16 @@ public class LevelScenario : Singleton<LevelScenario>
         
         StatusBarUI.Instance.Show("[SPACE] to Deploy");
 
+        foreach (var planet in Objects.Instance.Planets)
+        {
+            _occupiedPoints.Add(planet.transform.position);
+        }
+
+        foreach (var launchPad in Objects.Instance.LaunchPads)
+        {
+            _occupiedPoints.Add(launchPad.transform.position);
+        }
+        
         StartNextQuest();
     }
 
@@ -81,13 +99,8 @@ public class LevelScenario : Singleton<LevelScenario>
     {
         if (Quests.Count == 0)
         {
-            // victory
-            
-            var pads = Objects.Instance.LaunchPads;
-            
-            pads.ForEach(p => p.SetReady(true));
-            
-            StatusBarUI.Instance.Show("RETURN TO LAUNCH PAD");
+            OnCompletedAllQuests?.Invoke();
+            return;
         }
 
         ActiveQuest = Quests[0];
@@ -100,14 +113,32 @@ public class LevelScenario : Singleton<LevelScenario>
     {
         if (ActiveQuest.Done)
         {
-            StartNextQuest();
+            if (ActiveQuest.MustVisitLaunchPad)
+            {
+                var pads = Objects.Instance.LaunchPads;
+            
+                pads.ForEach(p => p.SetReady(true));
+                
+                StatusBarUI.Instance.Show("RETURN TO LAUNCH PAD");
+            }
+            else
+            {
+                StartNextQuest();
+                return;
+            }
+            
+        }
+
+        if (ActiveQuest.Spawned == ActiveQuest.Count)
+        {
+            // do nothing, player should collect all
             return;
         }
 
         switch (ActiveQuest.Type)
         {
             case QuestType.FloatingPackage:
-                SpawnFloatingPackage();
+                SpawnFloatingPackagesAll();
                 break;
             case QuestType.LandingPad:
                 SpawnLandingPad();
@@ -117,7 +148,6 @@ public class LevelScenario : Singleton<LevelScenario>
                 break;
         }
     }
-
 
     private void Update()
     {
@@ -153,13 +183,34 @@ public class LevelScenario : Singleton<LevelScenario>
         }
     }
 
+    private void SpawnFloatingPackagesAll()
+    {
+        for (int i = 0; i < ActiveQuest.Count; i++)
+        {
+            SpawnFloatingPackage();
+        }
+    }
+
     private void SpawnFloatingPackage()
     {
         var package = Prefabs.Instance.Produce<PackagePickup>();
 
-        package.transform.position = Objects.Instance.LaunchPads[0].transform.position + Rnd.InRadius(10f);
+        var attempts = 20;
         
+        while(--attempts > 0)
+        {
+            package.transform.position = Objects.Instance.LaunchPads[0].transform.position + Rnd.InRadius(20f);
+
+            if (_occupiedPoints.All(p => Vector3.Distance(p, package.transform.position) > 20f))
+            {
+                break;
+            }
+        }
+
         MarkersPanelUI.Instance.AddMarker(package.transform);
+        ActiveQuest.Spawned += 1;
+        
+        _occupiedPoints.Add(package.transform.position );
     }
     
     private void SpawnLandingPad()
@@ -170,6 +221,7 @@ public class LevelScenario : Singleton<LevelScenario>
         planet.AttachPad(landingPad);
         
         MarkersPanelUI.Instance.AddMarker(landingPad.transform);
+        ActiveQuest.Spawned += 1;
     }
     
     private void SpawnOrbitalPackage()
@@ -180,11 +232,17 @@ public class LevelScenario : Singleton<LevelScenario>
         package.transform.position = planet.transform.position + planet.transform.up * (planet.Diameter * 0.6f);
         
         MarkersPanelUI.Instance.AddMarker(package.transform);
+        ActiveQuest.Spawned += 1;
     }
     
     public void DeployedFromLaunchPad()
     {
         StatusBarUI.Instance.Hide();
+
+        if (ActiveQuest.Type == QuestType.FloatingPackage && ActiveQuest.Completed == 0)
+        {
+            StatusBarUI.Instance.Show($"Collect {ActiveQuest.Count} Packages");
+        }
     }
     
     public void DeliveryMade(LandingPad lp)
@@ -198,6 +256,8 @@ public class LevelScenario : Singleton<LevelScenario>
     public void PackagePicked(PackagePickup package)
     {
         MarkersPanelUI.Instance.RemoveMarker(package.transform);
+
+        StatusBarUI.Instance.Hide();
         
         ActiveQuest.Completed += 1;
         ProceedActiveQuest();
@@ -208,8 +268,11 @@ public class LevelScenario : Singleton<LevelScenario>
     public void ReturnedToPad(LaunchPad pad)
     {
         OnReturnedToLaunch?.Invoke();
-        
+
         StatusBarUI.Instance.Hide();
+        
+        ActiveQuest.MustVisitLaunchPad = false;
+        ProceedActiveQuest();
     }
 
     public void ShipDied()

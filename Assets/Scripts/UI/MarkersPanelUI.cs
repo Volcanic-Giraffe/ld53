@@ -66,7 +66,7 @@ public class MarkersPanelUI : Singleton<MarkersPanelUI>
         var source = _camera.transform;
 
         var target = item.Target;
-        var targetPos = target.position;
+        var targetPos = target.position + Vector3.up * 1f;
 
         var itemSize = item.ScreenSize;
         

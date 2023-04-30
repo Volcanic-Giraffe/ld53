@@ -11,7 +11,6 @@ public class LaunchPad : MonoBehaviour
     private Ship _ship;
 
     private bool _ready;
-    private bool _visited;
 
     private void Awake()
     {
@@ -55,7 +54,6 @@ public class LaunchPad : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_visited) return;
         if (!_ready) return;
         
         if (other.CompareTag("Ship"))
@@ -65,10 +63,11 @@ public class LaunchPad : MonoBehaviour
             ship.RB.isKinematic = true;
 
             _ship = ship;
-            _visited = true;
-
+            _ready = false;
+            
             ship.transform.DOMove(mountPoint.position, Consts.LaunchPadLandingTime).OnComplete(() =>
             {
+                ship.Refuel(100f);
                 LevelScenario.Instance.ReturnedToPad(this);
             });
 
