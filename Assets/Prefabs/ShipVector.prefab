@@ -146,6 +146,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   MouseButton: 0
+  Button: 32
   engineFx: {fileID: 7019022365381298629}
 --- !u!114 &3998937812077811852
 MonoBehaviour:
@@ -200,6 +201,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   MouseButton: 1
+  Button: 304
   engineFx: {fileID: 6569127715090012222}
 --- !u!114 &5635904980444869047
 MonoBehaviour:

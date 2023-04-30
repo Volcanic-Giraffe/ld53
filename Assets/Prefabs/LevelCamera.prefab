@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a905f46d87a9a149bb11afacc45a4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
-  tiltSpeed: 7
+  orientToVelocity: 0
+  orientByMouse: 1
   followDistance: 4
   mouseControlSpeed: 3

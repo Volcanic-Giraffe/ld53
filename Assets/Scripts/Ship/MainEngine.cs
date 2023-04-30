@@ -15,9 +15,10 @@ public class MainEngine : MonoBehaviour
     private bool _thrust;
     private float _thrustTimer;
     [SerializeField] private int MouseButton;
+    [SerializeField] private KeyCode Button;
 
     [SerializeField] private EngineFx engineFx;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -34,13 +35,13 @@ public class MainEngine : MonoBehaviour
             if (_thrust) StopThrust();
             return;
         }
-        
+
         if (_thrust)
         {
             Ship.Fuel -= Time.deltaTime;
         }
-        
-        if (Input.GetMouseButton(MouseButton) && Ship.Fuel > 0f)
+
+        if ((Input.GetMouseButton(MouseButton) || Input.GetKey(Button)) && Ship.Fuel > 0f)
         {
             DoThrust();
         }
@@ -55,14 +56,14 @@ public class MainEngine : MonoBehaviour
     private void StopThrust()
     {
         _thrust = false;
-        
+
         engineFx.Stop();
     }
 
     private void DoThrust()
     {
         _thrust = true;
-        
+
         engineFx.Start();
     }
 

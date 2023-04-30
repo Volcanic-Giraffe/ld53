@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6516276339893210261}
   - component: {fileID: 8163031988713350931}
   - component: {fileID: 4732241470435564349}
+  - component: {fileID: 4946436434997554038}
   m_Layer: 6
   m_Name: ShipGyro
   m_TagString: Ship
@@ -143,6 +144,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   MouseButton: 0
+  Button: 32
   engineFx: {fileID: 5781166527402843512}
 --- !u!114 &4732241470435564349
 MonoBehaviour:
@@ -157,6 +159,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GyroPower: 300
+--- !u!114 &4946436434997554038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213727616505535169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a858a42b8702d941bea26c864403178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Auto: 0
+  AlignSpeed: 200
+  MouseButton: 1
 --- !u!1 &740951836995057734
 GameObject:
   m_ObjectHideFlags: 0
