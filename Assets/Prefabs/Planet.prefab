@@ -103,7 +103,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5347512766818721983}
-  m_Mesh: {fileID: 3387280170550951252, guid: 4618add220df79b4fa5235b65cf1dcf6, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!23 &5983306978452305858
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -186,8 +186,6 @@ MonoBehaviour:
   - {fileID: 0}
   blackBrushes: []
   seamlessNoises:
-  - {fileID: 2800000, guid: ca0f3343af7090248aa0e1228f6a1577, type: 3}
-  - {fileID: 2800000, guid: e9521dd8fc684ca47a02733f212925f8, type: 3}
   - {fileID: 2800000, guid: 9063b9fac3c217147ba10776ba0332b3, type: 3}
   - {fileID: 2800000, guid: 9670a8eb79675584b83b9c70637c89eb, type: 3}
   - {fileID: 2800000, guid: 859754c48361df54b948d43852425425, type: 3}
@@ -210,9 +208,9 @@ MonoBehaviour:
   hpow: 1
   heightStrength: 0.05
   cpow: 2
-  seed: 65630
+  seed: 47860
   weight1: 0.649
   weight2: 0.443
   weight3: 0
-  originalMesh: {fileID: 3387280170550951252, guid: 4618add220df79b4fa5235b65cf1dcf6,
+  originalMesh: {fileID: 1727936867091435927, guid: 4618add220df79b4fa5235b65cf1dcf6,
     type: 3}

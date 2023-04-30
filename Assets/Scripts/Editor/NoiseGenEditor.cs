@@ -14,7 +14,7 @@ namespace Editor
             gui.Add(new Button(() =>
             {
                 var ng = (this.target as PlanetGenerator);
-                ng.StartCoroutine(ng.Generate());
+                ng.Generate();
             })
             {
                 text = "Generate"
@@ -23,7 +23,7 @@ namespace Editor
             {
                 var ng = (this.target as PlanetGenerator);
                 ng.seed = (uint)(Random.value * 100000);
-                ng.StartCoroutine(ng.Generate());
+                ng.Generate();
             })
             {
                 text = "Generate Random Seed"

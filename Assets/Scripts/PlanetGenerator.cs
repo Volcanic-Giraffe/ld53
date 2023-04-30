@@ -47,65 +47,42 @@ public class PlanetGenerator : MonoBehaviour
 
     public Mesh originalMesh = null;
 
-    public IEnumerator Generate()
+    public void Generate()
     {
         var rnd = new Random();
         rnd.InitState(seed);
+        var time1 = System.DateTime.UtcNow;
 
-        var usedTextures = new List<Texture2D>
-        {
-            seamlessNoises[rnd.NextInt(seamlessNoises.Count)],
-            seamlessNoises[rnd.NextInt(seamlessNoises.Count)],
-            seamlessNoises[rnd.NextInt(seamlessNoises.Count)]
-        };
         var weights = new float[] { weight1, weight2, weight3 };
-        var offsets = new List<Vector2>
-        {
-            rnd.NextFloat2(),
-            rnd.NextFloat2(),
-            rnd.NextFloat2(),
-        };
+
         //no size
         const int nsize = 512;
+        var offsets = new int2[]
+        {
+            rnd.NextInt2(nsize),
+            rnd.NextInt2(nsize),
+            rnd.NextInt2(nsize),
+        };
         var minH = 111f;
         var maxH = -111f;
         var outputTexture = new Texture2D(nsize, nsize);
-        var tp1 = usedTextures[0].GetPixels();      //todo: cache somehow?
-        yield return new WaitForEndOfFrame();
-        var tp2 = usedTextures[1].GetPixels();
-        yield return new WaitForEndOfFrame();
-        var tp3 = usedTextures[2].GetPixels();
-        yield return new WaitForEndOfFrame();
-
-        var tpout = new float[nsize * nsize];
-        var ii = 0;
-        for (int y = 0; y < nsize; y++)
-        {
-            for (int x = 0; x < nsize; x++)
-            {
-                var h1 = tp1[((int)(x + offsets[0].x * nsize) % nsize + nsize * ((int)(y + offsets[0].y * nsize) % nsize))].r;
-                var h2 = tp2[((int)(x + offsets[1].x * nsize) % nsize + nsize * ((int)(y + offsets[1].y * nsize) % nsize))].r;
-                var h3 = tp3[((int)(x + offsets[2].x * nsize) % nsize + nsize * ((int)(y + offsets[2].y * nsize) % nsize))].r;
-
-                h1 = 2f * (h1 - 0.5f);
-                h2 = 2f * (h2 - 0.5f);
-                h3 = 2f * (h3 - 0.5f);
-
-                var rh = weight1 * h1 + weight2 * h2 + weight3 * h3;
-                var rhAsColor = rh / 2f + 0.5f;
-                
-                tpout[ii] = rhAsColor;
-                ii++;
-                minH = Mathf.Min(minH, rhAsColor);
-                maxH = Mathf.Max(maxH, rhAsColor);
-            }
-        }
-        yield return new WaitForEndOfFrame();
+        var ti1 = rnd.NextInt(seamlessNoises.Count);
+        var tp1 = GetCachedColors(ti1, seamlessNoises[ti1]);
+        //yield return new WaitForEndOfFrame();
+        var ti2 = rnd.NextInt(seamlessNoises.Count);
+        var tp2 = GetCachedColors(ti2, seamlessNoises[ti2]);
+        //yield return new WaitForEndOfFrame();
+        var ti3 = rnd.NextInt(seamlessNoises.Count);
+        var tp3 = weight3 > 0 ? GetCachedColors(ti3, seamlessNoises[ti3]) : tp2;
+        //yield return new WaitForEndOfFrame();
+        var time2 = System.DateTime.UtcNow;
+        var tpout = GenerateNoiseTexture(nsize, tp1, offsets, tp2, tp3, ref minH, ref maxH);
+        //yield return new WaitForEndOfFrame();
+        var time3 = System.DateTime.UtcNow;
 
         this.noiseTex = outputTexture;
 
         var colorScheme1 = colorSchemes[rnd.NextInt(colorSchemes.Count)]; 
-        var colorScheme2 = colorSchemes[rnd.NextInt(colorSchemes.Count)]; 
         
         var mesh = originalMesh;
 
@@ -113,31 +90,87 @@ public class PlanetGenerator : MonoBehaviour
         var normalsList = new List<Vector3>(); 
         var uvsList = new List<Vector2>();
         var colorList = new List<Color>();
+        ApplyHeightAndColor(mesh, verticesList, normalsList, uvsList, nsize, tpout, minH, maxH, colorScheme1, colorList);
+        var time4 = System.DateTime.UtcNow;
+        //yield return new WaitForEndOfFrame();
+        //Debug.Log($"Min is {minH} max is {maxH}");
+
+        StartCoroutine(SetNewMesh(verticesList, mesh, uvsList, colorList));
+        var time5 = System.DateTime.UtcNow;
+
+        SetColorSchemeToMaterial(colorScheme1);
+        var time6 = System.DateTime.UtcNow;
+        /*
+        Debug.Log($"Read pixels = {(time2-time1).TotalMilliseconds}, \n" +
+                  $"Generate noise tex= {(time3-time2).TotalMilliseconds}, \n" +
+                  $"Apply h&c={(time4-time3).TotalMilliseconds}, \n" +
+                  $"New mesh={(time5-time4).TotalMilliseconds}, \n" +
+                  $"Set color to material={(time6-time5).TotalMilliseconds}");
+        Debug.Log($"Total = {(time6-time1).TotalMilliseconds}");
+        */
+        //yield return null;
+    }
+
+    private float[] GenerateNoiseTexture(int nsize, Color[] tp1, int2[] offsets, Color[] tp2, Color[] tp3, ref float minH,
+        ref float maxH)
+    {
+        var tpout = new float[nsize * nsize];
+        var ii = 0;
+        for (int y = 0; y < nsize; y++)
+        {
+            for (int x = 0; x < nsize; x++)
+            {
+                var h1 = tp1[((int)(x + offsets[0].x) % nsize + nsize * ((int)(y + offsets[0].y) % nsize))]
+                    .r;
+                var h2 = tp2[((int)(x + offsets[1].x) % nsize + nsize * ((int)(y + offsets[1].y) % nsize))]
+                    .r;
+                var h3 = weight3 > 0 ? tp3[((int)(x + offsets[2].x) % nsize + nsize * ((int)(y + offsets[2].y) % nsize))].r : 0f;
+
+                h1 = 2f * (h1 - 0.5f);
+                h2 = 2f * (h2 - 0.5f);
+                h3 = 2f * (h3 - 0.5f);
+
+                var rh = weight1 * h1 + weight2 * h2 + weight3 * h3;
+                var rhAsColor = rh / 2f + 0.5f;
+
+                tpout[ii] = rhAsColor;
+                ii++;
+                if (rhAsColor < minH) minH = rhAsColor;
+                if (rhAsColor > maxH) maxH = rhAsColor;
+            }
+        }
+
+        return tpout;
+    }
+
+    private void ApplyHeightAndColor(Mesh mesh, List<Vector3> verticesList, List<Vector3> normalsList, List<Vector2> uvsList, int nsize, float[] tpout,
+        float minH, float maxH, Texture2D colorScheme1, List<Color> colorList)
+    {
         mesh.GetVertices(verticesList);
         mesh.GetNormals(normalsList);
         mesh.GetUVs(0, uvsList);
-        for (int i = 0; i < mesh.vertexCount; i++) 
+        for (int i = 0; i < mesh.vertexCount; i++)
         {
-            var u = (int)(uvsList[i].x*nsize)%nsize;
-            var v = (int)(uvsList[i].y*nsize)%nsize;
-            var height = tpout[v * nsize + u];// outputTexture.GetPixel((int)u, (int)v).r;
+            var u = (int)(uvsList[i].x * nsize) % nsize;
+            var v = (int)(uvsList[i].y * nsize) % nsize;
+            var height = tpout[v * nsize + u]; // outputTexture.GetPixel((int)u, (int)v).r;
             //normalize
             height = (height - minH) / (maxH - minH);
             var pos = verticesList[i];
-            var color = colorScheme1.GetPixel((int)(Mathf.Pow(height, cpow) * colorScheme1.width), 2);
-            
-            color.a = height;
+            //var color = colorScheme1.GetPixel((int)(Mathf.Pow(height, cpow) * colorScheme1.width), 2);
+            var color = new Color(1, 1, 1, height);
 
             height = 2f * height - 1f;
             height = Mathf.Sign(height) * Mathf.Pow(Mathf.Abs(height), hpow);
 
             colorList.Add(color);
-            var newPos = pos + normalsList[i] * height*heightStrength;
+            var newPos = pos + normalsList[i] * height * heightStrength;
             verticesList[i] = newPos;
         }
-        yield return new WaitForEndOfFrame();
-        //Debug.Log($"Min is {minH} max is {maxH}");
+    }
 
+    private IEnumerator SetNewMesh(List<Vector3> verticesList, Mesh mesh, List<Vector2> uvsList, List<Color> colorList)
+    {
         var newMesh = new Mesh()
         {
             vertices = verticesList.ToArray(),
@@ -148,17 +181,20 @@ public class PlanetGenerator : MonoBehaviour
         newMesh.RecalculateBounds();
         newMesh.RecalculateNormals();
         newMesh.RecalculateTangents();
-        
         GetComponent<MeshFilter>().mesh = newMesh;
+        yield return null;
+    }
+
+    private void SetColorSchemeToMaterial(Texture2D colorScheme1)
+    {
         var renderer = GetComponent<MeshRenderer>();
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();
         renderer.GetPropertyBlock(mpb);
         mpb.SetTexture("_ColorScheme", colorScheme1);
         renderer.SetPropertyBlock(mpb);
-
     }
 
-    
+
     public void GenerateOld()
     {
         var rnd = new Random();
@@ -308,9 +344,23 @@ public class PlanetGenerator : MonoBehaviour
         return tex;
     }
 
-    public IEnumerator GenerateRandom()
+    public void GenerateRandom()
     {
         seed = (uint)(UnityEngine.Random.value * 111111111);
-        yield return Generate();
+        Generate();
+    }
+    
+    public static Color[][] PixelsCached = new Color[20][];
+
+    public static Color[] GetCachedColors(int idx, Texture2D tex)
+    {
+        var pxs = PixelsCached[idx];
+        if (pxs == null)
+        {
+            pxs = tex.GetPixels();
+            PixelsCached[idx] = pxs;
+        }
+
+        return pxs;
     }
 }
