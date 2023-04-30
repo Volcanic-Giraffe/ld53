@@ -53,6 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FuelMax: 30
   Fuel: 30
+  HealthMax: 100
+  Health: 100
   VelocityLimit: 80
 --- !u!54 &3620783379327781944
 Rigidbody:

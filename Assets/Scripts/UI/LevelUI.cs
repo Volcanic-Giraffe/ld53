@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +7,8 @@ public class LevelUI : Singleton<LevelUI>
 {
     [SerializeField] private RectTransform container;
     [SerializeField] private Slider fuelBar;
+    [SerializeField] private Slider hullBar;
+    [SerializeField] private TextMeshProUGUI deliveryBar;
 
     private Ship _ship;
 
@@ -31,5 +35,6 @@ public class LevelUI : Singleton<LevelUI>
         if (_ship == null) return;
         
         fuelBar.SetValueWithoutNotify(_ship.FuelRatio);
+        hullBar.SetValueWithoutNotify(_ship.HealthRatio);
     }
 }

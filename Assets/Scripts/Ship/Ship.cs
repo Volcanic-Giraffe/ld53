@@ -9,7 +9,11 @@ public class Ship : MonoBehaviour
     [SerializeField] public float FuelMax;
     [SerializeField] public float Fuel;
 
+    [SerializeField] public float HealthMax;
+    [SerializeField] public float Health;
+    
     public float FuelRatio => FuelMax > 0 ? Fuel / FuelMax : 0f;
+    public float HealthRatio => HealthMax > 0 ? Health / HealthMax : 0f;
     
     private Rigidbody rb;
 
@@ -21,6 +25,8 @@ public class Ship : MonoBehaviour
     [SerializeField] float VelocityLimit = 20f;
     private Planet _closestPlanet;
 
+    private float _invulnerabilityTimer;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -55,6 +61,8 @@ public class Ship : MonoBehaviour
     private void Update()
     {
         FindClosestPlanet();
+
+        if (_invulnerabilityTimer > 0) _invulnerabilityTimer -= Time.deltaTime;
     }
 
     private void FindClosestPlanet()
@@ -77,10 +85,34 @@ public class Ship : MonoBehaviour
         if (RB.velocity.magnitude > VelocityLimit) RB.velocity = RB.velocity.normalized * VelocityLimit;
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.impulse.magnitude > 5f)
+        {
+            var dmgFormula = other.impulse.magnitude * 0.1f;
+
+            DoDamage(dmgFormula);
+        }
+    }
+
+    private void DoDamage(float amount)
+    {
+        if (_invulnerabilityTimer > 0) return;
+        _invulnerabilityTimer = 0.1f;
+        
+        Health -= amount;
+        Health = Mathf.Clamp(Health, 0f, HealthMax);
+    }
+
+    public void Heal(float amount)
+    {
+        Health += amount;
+        Health = Mathf.Clamp(Health, 0f, HealthMax);
+    }
+    
     public void Refuel(float amount)
     {
         Fuel += amount;
-
         Fuel = Mathf.Clamp(Fuel, 0f, FuelMax);
     }
 }
