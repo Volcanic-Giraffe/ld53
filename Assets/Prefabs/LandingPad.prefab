@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 2499726529031012109}
   - component: {fileID: 464622802112257330}
   - component: {fileID: 2856251124918878877}
+  - component: {fileID: 6913183232950327763}
   m_Layer: 9
   m_Name: LandingPad
   m_TagString: LandingPad
@@ -452,6 +453,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mountPoint: {fileID: 8076319823440679950}
   refuelRate: 5
+--- !u!114 &6913183232950327763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324027517948897215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8715127e10bef994698ce5922a5392b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Groups:
+  - Group:
+    - {fileID: 4642682070008997294}
+    - {fileID: 3049011853717754363}
+  - Group:
+    - {fileID: 3824346014088752040}
+    - {fileID: 194858749312094217}
+  GroupEnabledInterval: 1
+  OnMaterial: {fileID: 2100000, guid: e61fa1618d1c89a41bace379c3059d94, type: 2}
+  OffMaterial: {fileID: 2100000, guid: 31d3c700025985c4db27ff3a24251288, type: 2}
 --- !u!1 &8536753964161651720
 GameObject:
   m_ObjectHideFlags: 0
