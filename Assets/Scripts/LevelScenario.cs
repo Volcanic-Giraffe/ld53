@@ -44,6 +44,7 @@ public class LevelScenario : Singleton<LevelScenario>
         {
             Count = 3,
             Completed = 0,
+            MustVisitLaunchPad = true,
             Type = QuestType.OrbitalPackage
         }
     };
