@@ -1,6 +1,6 @@
 ﻿public static class Consts
 {
-    public static float PlanetDiameter = 7.0f; // average
+    public static float PlanetDiameter = 9.0f; // average
 
 
     public static float LandingPadLandingTime = 1.13f;

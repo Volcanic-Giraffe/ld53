@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15124633e9152ef4193f3c823b70de55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gravity: 3000
+  Gravity: 4000
   shape: {fileID: 1225575331856229694}
 --- !u!1 &5347512766818721983
 GameObject:
@@ -208,9 +208,9 @@ MonoBehaviour:
   hpow: 1
   heightStrength: 0.05
   cpow: 2
-  seed: 47860
+  seed: 63391
   weight1: 0.649
   weight2: 0.443
   weight3: 0
-  originalMesh: {fileID: 1727936867091435927, guid: 4618add220df79b4fa5235b65cf1dcf6,
+  originalMesh: {fileID: 3387280170550951252, guid: 4618add220df79b4fa5235b65cf1dcf6,
     type: 3}
