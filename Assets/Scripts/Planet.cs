@@ -32,6 +32,7 @@ public class Planet : MonoBehaviour
         shape.localScale = Vector3.one * Diameter;
         
         transform.rotation = Random.rotation;
+        StartCoroutine(GetComponentInChildren<PlanetGenerator>().GenerateRandom());
     }
 
     public void AttachPad(LandingPad lp)
