@@ -47,8 +47,6 @@ public class LevelUI2 : Singleton<LevelUI2>
         _ship = Objects.Instance.Ship;
         
         container.gameObject.SetActive(true);
-
-        LevelScenario.Instance.OnDeliveryMade += RefreshTasks;
     }
     
     private void Update()
@@ -63,12 +61,56 @@ public class LevelUI2 : Singleton<LevelUI2>
 
         hpBar.SetValueWithoutNotify(_ship.HealthRatio);
 
-        speedText.SetText($"{_ship.Velocity:0.0} ms");
+        speedText.SetText($"{_ship.Velocity:0.0} m/s");
+
+        UpdateTasks();
     }
 
-
-    private void RefreshTasks()
+    private void UpdateTasks()
     {
+        var quest = LevelScenario.Instance.ActiveQuest;
+
+        taskProgress.SetText($"{quest.Completed} / {quest.Count}");
         
+        if (quest.Done && quest.MustVisitLaunchPad)
+        {
+            taskText.SetText("Return to Station");
+            
+            ShowIcon(taskIconReturn);
+        }
+        else if (!quest.Done && quest.Type == QuestType.FloatingPackage)
+        {
+            taskText.SetText("Collect Packages");
+            ShowIcon(taskIconParcel);
+        }
+        else if (!quest.Done && quest.Type == QuestType.LandingPad)
+        {
+            taskText.SetText("Deliver Packages");
+            ShowIcon(taskIconMail);
+        }
+        else if (!quest.Done && quest.Type == QuestType.OrbitalPackage)
+        {
+            taskText.SetText("Collect Packages");
+            ShowIcon(taskIconParcel);
+        }
+        else
+        {
+            taskText.SetText("");
+            taskProgress.SetText("");
+            ShowIcon(null);
+        }
     }
+
+    private void ShowIcon(Image image)
+    {
+        taskIconMail.gameObject.SetActive(false);
+        taskIconReturn.gameObject.SetActive(false);
+        taskIconParcel.gameObject.SetActive(false);
+
+        if (image != null)
+        {
+            image.gameObject.SetActive(true);
+        }
+    }
+
 }
