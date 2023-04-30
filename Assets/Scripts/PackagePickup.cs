@@ -12,7 +12,6 @@ public class PackagePickup : MonoBehaviour
 
     private void Start()
     {
-        MarkersPanelUI.Instance.AddMarker(transform);
     }
 
     private void Update()
@@ -33,9 +32,7 @@ public class PackagePickup : MonoBehaviour
             transform.DOMove(ship.transform.position, 0.23f);
             transform.DOScale(0.1f, 0.23f).OnComplete(() =>
             {
-                //
-                MarkersPanelUI.Instance.RemoveMarker(transform);
-                
+                LevelScenario.Instance.PackagePicked(this);                
                 Destroy(gameObject,0.01f);
             });
         }
