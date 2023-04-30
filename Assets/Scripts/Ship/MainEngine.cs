@@ -36,10 +36,7 @@ public class MainEngine : MonoBehaviour
             return;
         }
 
-        if (_thrust)
-        {
-            Ship.Fuel -= Time.deltaTime;
-        }
+
 
         if ((Input.GetMouseButton(MouseButton) || Input.GetKey(Button)) && Ship.Fuel > 0f)
         {
@@ -70,6 +67,7 @@ public class MainEngine : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Ship.Fuel -= CurrentThrustPower * Time.deltaTime;
         RB.AddForce(transform.forward * CurrentThrustPower * EngineImpulse * Time.fixedDeltaTime, ForceMode.Acceleration);
     }
 }
