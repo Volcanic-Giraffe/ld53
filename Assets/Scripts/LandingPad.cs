@@ -51,7 +51,7 @@ public class LandingPad : MonoBehaviour
                 _shipLanded = true;
                 Planet.SetColor(Color.green);
                 
-                LevelScenario.Instance.OnDeliveryMade(this);
+                LevelScenario.Instance.DeliveryMade(this);
                 
             });
 

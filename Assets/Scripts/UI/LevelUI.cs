@@ -20,7 +20,6 @@ public class LevelUI : Singleton<LevelUI>
     private void Start()
     {
         Generator.Instance.OnGenerationDone += Setup;
-        
     }
 
     private void Setup()
@@ -28,6 +27,8 @@ public class LevelUI : Singleton<LevelUI>
         _ship = Objects.Instance.Ship;
         
         container.gameObject.SetActive(true);
+
+        LevelScenario.Instance.OnDeliveryMade += RefreshDeliveries;
     }
     
     private void Update()
@@ -36,5 +37,20 @@ public class LevelUI : Singleton<LevelUI>
         
         fuelBar.SetValueWithoutNotify(_ship.FuelRatio);
         hullBar.SetValueWithoutNotify(_ship.HealthRatio);
+        
     }
+
+    private void RefreshDeliveries()
+    {
+        var done = LevelScenario.Instance.DeliveriesDone;
+        var need = LevelScenario.Instance.DeliveriesNeed;
+        
+        deliveryBar.SetText($"{done} / {need}");
+
+        if (done == need)
+        {
+            deliveryBar.color = new Color(0.62f, 1f, 0.31f);
+        }
+    }
+    
 }

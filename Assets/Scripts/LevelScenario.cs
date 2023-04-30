@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,12 @@ public class LevelScenario : Singleton<LevelScenario>
     [SerializeField] private int deliveries;
 
     private int _delivered;
+
+    public int DeliveriesNeed => deliveries;
+    public int DeliveriesDone => _delivered;
+
+    public event Action OnDeliveryMade;
+    public event Action OnReturnedToLaunch;
     
     void Start()
     {
@@ -17,6 +24,8 @@ public class LevelScenario : Singleton<LevelScenario>
     private void Setup()
     {
         SpawnLandingPad();
+        
+        StatusBarUI.Instance.Show("[SPACE] to Deploy");
     }
 
     private void SpawnLandingPad()
@@ -28,19 +37,35 @@ public class LevelScenario : Singleton<LevelScenario>
         planet.SetColor(Color.red);
     }
 
-    public void OnDeliveryMade(LandingPad lp)
+    public void DeployedFromLaunchPad()
+    {
+        StatusBarUI.Instance.Hide();
+    }
+    
+    public void DeliveryMade(LandingPad lp)
     {
         _delivered += 1;
 
         if (_delivered == deliveries)
         {
-            // victory!
+            var pads = Objects.Instance.LaunchPads;
+
+            pads.ForEach(p => p.SetReady(true));
             
-            // ask return to base?
+            StatusBarUI.Instance.Show("RETURN TO LAUNCH PAD");
         }
         else
         {
             SpawnLandingPad();
         }
+        
+        OnDeliveryMade?.Invoke();
+    }
+
+    public void ReturnedToPad(LaunchPad pad)
+    {
+        OnReturnedToLaunch?.Invoke();
+        
+        StatusBarUI.Instance.Hide();
     }
 }

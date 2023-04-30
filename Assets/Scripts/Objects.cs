@@ -9,6 +9,7 @@ public class Objects : Singleton<Objects>
     public Ship Ship;
     public List<Planet> Planets = new();
     public List<LandingPad> LandingPads = new();
+    public List<LaunchPad> LaunchPads = new();
     
     public void AddPlanet(Planet p)
     {
@@ -30,4 +31,13 @@ public class Objects : Singleton<Objects>
         LandingPads.Remove(lp);
     }
 
+    public void AddLaunchPad(LaunchPad lp)
+    {
+        LaunchPads.Add(lp);
+    }
+
+    public void RemoveLaunchPad(LaunchPad lp)
+    {
+        LaunchPads.Remove(lp);
+    }
 }
