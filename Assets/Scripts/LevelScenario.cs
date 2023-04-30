@@ -80,7 +80,8 @@ public class LevelScenario : Singleton<LevelScenario>
         var planet = Objects.Instance.Planets.Where(p => p.LandingPad == null).PickRandom();
 
         planet.AttachPad(landingPad);
-        planet.SetColor(Color.red);
+        
+        MarkersPanelUI.Instance.AddMarker(landingPad.transform);
     }
 
     public void DeployedFromLaunchPad()

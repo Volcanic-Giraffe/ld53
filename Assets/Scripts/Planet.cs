@@ -47,16 +47,6 @@ public class Planet : MonoBehaviour
         transform.rotation = Random.rotation;
     }
 
-    public void SetColor(Color color)
-    {
-        var rends = GetComponentsInChildren<MeshRenderer>();
-
-        foreach (var rend in rends)
-        {
-            rend.material.DOColor(color, 0.1f);
-        }
-    }
-
     private void OnDestroy()
     {
         if (Objects.Instance != null)

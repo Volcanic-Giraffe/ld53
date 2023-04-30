@@ -49,9 +49,10 @@ public class LandingPad : MonoBehaviour
             ship.transform.DOMove(mountPoint.position, Consts.LandingPadLandingTime).OnComplete(() =>
             {
                 _shipLanded = true;
-                Planet.SetColor(Color.green);
                 
                 LevelScenario.Instance.DeliveryMade(this);
+                
+                MarkersPanelUI.Instance.RemoveMarker(transform);
                 
             });
 
