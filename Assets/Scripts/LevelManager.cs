@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        ship = FindObjectOfType<Ship>();
+        ship = Objects.Instance.Ship;
     }
 
     void FixedUpdate()

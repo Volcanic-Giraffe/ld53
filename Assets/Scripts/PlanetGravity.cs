@@ -11,15 +11,11 @@ public class PlanetGravity : MonoBehaviour
 
     private void Awake()
     {
-        ship = FindObjectOfType<Ship>().RB;
-
-        shape.localScale *= Random.Range(0.9f, 2.5f);
-        shape.rotation = Random.rotation;
     }
 
     void Start()
     {
-
+        ship = Objects.Instance.Ship.RB;
     }
 
     void FixedUpdate()

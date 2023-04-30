@@ -1,13 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class LaunchPad : MonoBehaviour
 {
+    [SerializeField] private Transform mountPoint;
     [SerializeField] float LaunchForce = 200f;
     private Ship _ship;
-    
+
+    private bool _ready;
+    private bool _visited;
+
+    private void Awake()
+    {
+        Objects.Instance.AddLaunchPad(this);
+    }
+
     public void Attach(Ship ship)
     {
         _ship = ship;
@@ -33,5 +43,43 @@ public class LaunchPad : MonoBehaviour
         _ship.RB.isKinematic = false;
         _ship.RB.AddForce(_ship.transform.forward * LaunchForce, ForceMode.VelocityChange);
         _ship = null;
+        
+        LevelScenario.Instance.DeployedFromLaunchPad();
+    }
+
+    public void SetReady(bool ready)
+    {
+        _ready = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_visited) return;
+        if (!_ready) return;
+        
+        if (other.CompareTag("Ship"))
+        {
+            var ship = other.GetComponentInParent<Ship>();
+
+            ship.RB.isKinematic = true;
+
+            _ship = ship;
+            _visited = true;
+
+            ship.transform.DOMove(mountPoint.position, Consts.LaunchPadLandingTime).OnComplete(() =>
+            {
+                LevelScenario.Instance.ReturnedToPad(this);
+            });
+
+            ship.transform.DORotateQuaternion(mountPoint.rotation, Consts.LaunchPadLandingTime * 0.5f);
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        if (Objects.Instance != null)
+        {
+            Objects.Instance.RemoveLaunchPad(this);
+        }
     }
 }

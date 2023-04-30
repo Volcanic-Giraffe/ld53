@@ -34,7 +34,7 @@ public class Sounds : Singleton<Sounds>
         aSource.PlayOneShot(clip, volumeScale);
     }
 
-    public void PlayRandom(Vector3 point, string soundPrefix, float volumeScale = 1)
+    public void PlayRandom(string soundPrefix, float volumeScale = 1)
     {
         if (string.IsNullOrEmpty(soundPrefix)) return;
         

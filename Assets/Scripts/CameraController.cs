@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     private float timer = 0f;
     void Start()
     {
-        ship = FindObjectOfType<Ship>();
+        ship = Objects.Instance.Ship;
     }
 
     // Update is called once per frame
