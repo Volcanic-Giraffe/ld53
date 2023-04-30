@@ -15,6 +15,15 @@ public class LevelScenario : Singleton<LevelScenario>
 
     public event Action OnDeliveryMade;
     public event Action OnReturnedToLaunch;
+
+    private bool _started;
+    private bool _completed;
+    
+    
+    private Ship _ship;
+
+    private float _shipDiedTimer;
+    private float _shipLowFuelTimer;
     
     void Start()
     {
@@ -23,9 +32,46 @@ public class LevelScenario : Singleton<LevelScenario>
 
     private void Setup()
     {
-        SpawnLandingPad();
+        _started = true;
+
+        _ship = Objects.Instance.Ship;
         
+        SpawnLandingPad();
         StatusBarUI.Instance.Show("[SPACE] to Deploy");
+    }
+
+    private void Update()
+    {
+        if (!_started) return;
+        if (_completed) return;
+        
+        if (_ship.Health <= 0)
+        {
+            _shipDiedTimer -= Time.deltaTime;
+
+            if (_shipDiedTimer <= 0)
+            {
+                ShipDied();
+            }
+        }
+        else
+        {
+            _shipDiedTimer = Consts.GameOverDieTime;
+        }
+        
+        if (_ship.Fuel <= 0)
+        {
+            _shipLowFuelTimer -= Time.deltaTime;
+
+            if (_shipLowFuelTimer <= 0)
+            {
+                ShipNoFuel();
+            }
+        }
+        else
+        {
+            _shipLowFuelTimer = Consts.GameOverNoFuelTime;
+        }
     }
 
     private void SpawnLandingPad()
@@ -67,5 +113,21 @@ public class LevelScenario : Singleton<LevelScenario>
         OnReturnedToLaunch?.Invoke();
         
         StatusBarUI.Instance.Hide();
+    }
+
+    public void ShipDied()
+    {
+        _completed = true;
+        StatusBarUI.Instance.Hide();
+        
+        GameOverUI.Instance.ShowFail("Hull Damaged");
+    }
+    
+    public void ShipNoFuel()
+    {
+        _completed = true;
+        StatusBarUI.Instance.Hide();
+        
+        GameOverUI.Instance.ShowFail("Low Fuel");
     }
 }

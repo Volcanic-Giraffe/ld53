@@ -12,6 +12,8 @@ public class Ship : MonoBehaviour
     [SerializeField] public float HealthMax;
     [SerializeField] public float Health;
     
+    public bool Died { get; set; }
+    
     public float FuelRatio => FuelMax > 0 ? Fuel / FuelMax : 0f;
     public float HealthRatio => HealthMax > 0 ? Health / HealthMax : 0f;
     
@@ -26,7 +28,7 @@ public class Ship : MonoBehaviour
     private Planet _closestPlanet;
 
     private float _invulnerabilityTimer;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -87,9 +89,9 @@ public class Ship : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.impulse.magnitude > 5f)
+        if (other.impulse.magnitude > 1f)
         {
-            var dmgFormula = other.impulse.magnitude * 0.1f;
+            var dmgFormula = 10f + other.impulse.magnitude * 0.2f;
 
             DoDamage(dmgFormula);
         }
@@ -102,6 +104,11 @@ public class Ship : MonoBehaviour
         
         Health -= amount;
         Health = Mathf.Clamp(Health, 0f, HealthMax);
+
+        if (Health <= 0)
+        {
+            Died = true;
+        }
     }
 
     public void Heal(float amount)

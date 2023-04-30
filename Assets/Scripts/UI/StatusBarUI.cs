@@ -20,7 +20,7 @@ public class StatusBarUI : Singleton<StatusBarUI>
 
     private void Start()
     {
-        group.DOFade(0f, 0.63f).SetLoops(-1, LoopType.Yoyo);
+        group.DOFade(0.2f, 0.63f).SetLoops(-1, LoopType.Yoyo);
     }
 
     public void Show(string message)

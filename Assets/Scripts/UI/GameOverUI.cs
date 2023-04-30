@@ -1,15 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameOverUI : Singleton<GameOverUI>
 {
-    [SerializeField] private RectTransform container;
+    [Header("Win Screen:")]
+    [SerializeField] private RectTransform winContainer;
 
+    [Header("Fail Screen:")]
+    [SerializeField] private RectTransform failContainer;
+    [SerializeField] private TextMeshProUGUI failReasonLabel;
+    
     private void Awake()
     {
-        container.gameObject.SetActive(false);
+        winContainer.gameObject.SetActive(false);
+        failContainer.gameObject.SetActive(false);
     }
     
     private void Start()
@@ -24,6 +31,15 @@ public class GameOverUI : Singleton<GameOverUI>
 
     public void ShowWin()
     {
-        container.gameObject.SetActive(true);
+        winContainer.gameObject.SetActive(true);
+        failContainer.gameObject.SetActive(false);
+    }
+    
+    public void ShowFail(string reason)
+    {
+        failContainer.gameObject.SetActive(true);
+        winContainer.gameObject.SetActive(false);
+        
+        failReasonLabel.SetText(reason);
     }
 }

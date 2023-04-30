@@ -29,6 +29,12 @@ public class MainEngine : MonoBehaviour
 
     private void Update()
     {
+        if (Ship.Died)
+        {
+            if (_thrust) StopThrust();
+            return;
+        }
+        
         if (_thrust)
         {
             Ship.Fuel -= Time.deltaTime;
