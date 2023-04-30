@@ -50,6 +50,6 @@ public class BlinkLights : MonoBehaviour
         }
 
         group += 1;
-        if (group >= Groups.Length - 1) group = 0;
+        if (group >= Groups.Length) group = 0;
     }
 }
