@@ -31,6 +31,8 @@ public class Ship : MonoBehaviour
 
     public float Velocity => rb.velocity.magnitude;
 
+    public float VelocityRatio => Velocity > 0 ? Velocity / 20f : 0f;
+    
     // Start is called before the first frame update
     void Awake()
     {
