@@ -32,6 +32,7 @@ public class Planet : MonoBehaviour
         shape.localScale = Vector3.one * Diameter;
         
         transform.rotation = Random.rotation;
+        StartCoroutine(GetComponentInChildren<PlanetGenerator>().GenerateRandom());
     }
 
     public void AttachPad(LandingPad lp)
@@ -53,7 +54,7 @@ public class Planet : MonoBehaviour
 
         foreach (var rend in rends)
         {
-            rend.material.DOColor(color, 0.1f);
+            //rend.material.DOColor(color, 0.1f);
         }
     }
 
