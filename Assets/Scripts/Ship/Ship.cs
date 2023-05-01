@@ -113,6 +113,8 @@ public class Ship : MonoBehaviour
             var dmgFormula = 10f + other.impulse.magnitude * 1.5f;
 
             DoDamage(dmgFormula);
+
+            LevelVolume.Instance.HitEffect(dmgFormula * 0.1f);
         }
     }
 
