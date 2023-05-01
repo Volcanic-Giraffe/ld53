@@ -13,6 +13,8 @@ public class PermanentUI : Singleton<PermanentUI>
     [SerializeField] private TextMeshProUGUI loadingMessage;
     [SerializeField] private Slider loadingBar;
     
+    public bool Loading { get; private set; }
+    
     private List<string> LoadingMessages = new()
     {
         "WASD / Space / Mouse",
@@ -30,12 +32,14 @@ public class PermanentUI : Singleton<PermanentUI>
     {
         loadingOverlay.gameObject.SetActive(true);
         loadingOverlay.raycastTarget = false;
+        Loading = false;
         
         loadingGroup.DOKill();
         loadingGroup.DOFade(0, 0.17f).OnComplete(() =>
         {
             loadingOverlay.gameObject.SetActive(false);
             loadingBar.gameObject.SetActive(false);
+
         });
     }
 
@@ -45,6 +49,7 @@ public class PermanentUI : Singleton<PermanentUI>
         
         loadingOverlay.gameObject.SetActive(true);
         loadingOverlay.raycastTarget = true;
+        Loading = true;
         
         loadingGroup.DOKill();
         loadingGroup.DOFade(1f, 0.17f).OnComplete(() =>
