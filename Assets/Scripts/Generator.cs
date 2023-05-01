@@ -25,12 +25,16 @@ public class Generator : Singleton<Generator>
     private IEnumerator GenerateCR()
     {
         SelectShip();
+
+        PermanentUI.Instance.UpdateLoadingProgress(0f);
         
         GeneratePlanets();
         for (int i = 0; i < _planets.Count; i++)
         {
             _planets[i].GenerateSurface();
             yield return new WaitForEndOfFrame();
+            
+            PermanentUI.Instance.UpdateLoadingProgress(i / (float)_planets.Count);
         }
 
         var start = _planets.Where(p => p.LandingPad == null).PickRandom();

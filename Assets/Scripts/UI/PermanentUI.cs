@@ -2,33 +2,52 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PermanentUI : Singleton<PermanentUI>
 {
     [SerializeField] private CanvasGroup loadingGroup;
-    [SerializeField] private Image overlay;
+    [SerializeField] private Image loadingOverlay;
+    [SerializeField] private TextMeshProUGUI loadingMessage;
+    [SerializeField] private Slider loadingBar;
+    
+    private List<string> LoadingMessages = new()
+    {
+        "WASD / Space / Mouse",
+        "42",
+        "Generating life the universe and everything"
+    };
+
+    private void Awake()
+    {
+        loadingMessage.SetText("");
+        loadingBar.gameObject.SetActive(false);
+    }
 
     public void FadeOut()
     {
-        overlay.gameObject.SetActive(true);
-        overlay.raycastTarget = false;
+        loadingOverlay.gameObject.SetActive(true);
+        loadingOverlay.raycastTarget = false;
         
         loadingGroup.DOKill();
-        loadingGroup.DOFade(0, 0.31f).OnComplete(() =>
+        loadingGroup.DOFade(0, 0.17f).OnComplete(() =>
         {
-            overlay.gameObject.SetActive(false);
+            loadingOverlay.gameObject.SetActive(false);
+            loadingBar.gameObject.SetActive(false);
         });
     }
 
     public void FadeIn(Action callback = null)
     {
-        overlay.gameObject.SetActive(true);
-        overlay.raycastTarget = true;
+        loadingMessage.SetText(LoadingMessages.PickRandom());
+        
+        loadingOverlay.gameObject.SetActive(true);
+        loadingOverlay.raycastTarget = true;
         
         loadingGroup.DOKill();
-        loadingGroup.DOFade(1f, 0.27f).OnComplete(() =>
+        loadingGroup.DOFade(1f, 0.17f).OnComplete(() =>
         {
             callback?.Invoke();
         });
@@ -41,5 +60,11 @@ public class PermanentUI : Singleton<PermanentUI>
             callback?.Invoke();
             FadeOut();
         });
+    }
+
+    public void UpdateLoadingProgress(float ratio)
+    {
+        loadingBar.gameObject.SetActive(true);
+        loadingBar.SetValueWithoutNotify(ratio);
     }
 }
