@@ -24,6 +24,8 @@ public class Generator : Singleton<Generator>
 
     private IEnumerator GenerateCR()
     {
+        SelectShip();
+        
         GeneratePlanets();
         for (int i = 0; i < _planets.Count; i++)
         {
@@ -52,6 +54,23 @@ public class Generator : Singleton<Generator>
         yield return new WaitForEndOfFrame();
 
         OnGenerationDone?.Invoke();
+    }
+
+    private void SelectShip()
+    { 
+        if (string.IsNullOrEmpty(GameState.PickedShip)) return;
+
+        var ships = FindObjectsOfType<Ship>(true);
+
+        foreach (var ship in ships)
+        {
+            ship.gameObject.SetActive(ship.Code == GameState.PickedShip);
+
+            if (ship.gameObject.activeSelf)
+            {
+                Objects.Instance.Ship = ship;
+            }
+        }
     }
 
     private void GeneratePlanets()

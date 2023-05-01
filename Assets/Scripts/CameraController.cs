@@ -15,7 +15,12 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         if (SceneManager.GetActiveScene().name == "MainMenu") return;
-        
+
+        Generator.Instance.OnGenerationDone += Setup;
+    }
+
+    private void Setup()
+    {
         ship = Objects.Instance.Ship;
         currentDirection = (transform.position - ship.transform.position).normalized;
     }
@@ -24,6 +29,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         if (SceneManager.GetActiveScene().name == "MainMenu") return;
+        if (ship == null) return;
         
         if (ship.Standby)
         {
