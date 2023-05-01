@@ -34,6 +34,12 @@ public class LaunchPad : MonoBehaviour
         {
             Deploy();
         }
+        
+        if (_ship != null)
+        {
+            _ship.Refuel(5f * Time.deltaTime);
+            _ship.Heal(10f * Time.deltaTime);
+        }
     }
 
     public void Deploy()
@@ -69,7 +75,6 @@ public class LaunchPad : MonoBehaviour
             
             _ship.transform.DOMove(mountPoint.position, Consts.LaunchPadLandingTime).OnComplete(() =>
             {
-                ship.Refuel(100f);
                 LevelScenario.Instance.ReturnedToPad(this);
             });
 
