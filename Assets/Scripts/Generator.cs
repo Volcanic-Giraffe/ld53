@@ -12,6 +12,7 @@ public class Generator : Singleton<Generator>
     [SerializeField] private GameObject ringPrefab;
 
     public int FuelPickupCount;
+    public int FuelEasyPickupCount;
 
     public event Action OnGenerationDone;
 
@@ -46,15 +47,10 @@ public class Generator : Singleton<Generator>
 
         var ship = Objects.Instance.Ship;
         launchPad.Attach(ship);
-
-        for (int i = 0; i < FuelPickupCount; i++)
-        {
-            var planet = _planets.Where(p => p.LandingPad == null).PickRandom();
-
-            var pickup = Prefabs.Instance.Produce<FuelPickup>();
-            pickup.transform.position = planet.transform.position + Vector3.up * planet.Diameter * 0.6f;
-        }
-
+        
+        SpawnEasyFuel();
+        SpawnHardFuel();
+        
         yield return new WaitForEndOfFrame();
 
         OnGenerationDone?.Invoke();
@@ -62,6 +58,56 @@ public class Generator : Singleton<Generator>
         yield return new WaitForEndOfFrame();
         
         PermanentUI.Instance.FadeOut();
+    }
+
+    private void SpawnEasyFuel()
+    {
+        var candidates = new List<Planet>(_planets);
+        
+        for (int i = 0; i < FuelEasyPickupCount; i++)
+        {
+            var left = candidates.PickRandom();
+            var leftPos = left.transform.position;
+
+            Planet right = null;
+            var min = float.MaxValue;
+            foreach (var other in candidates)
+            {
+                var dst = Vector3.Distance(leftPos, other.transform.position);
+                if (dst < 10f) continue;
+                
+                if (dst < min)
+                {
+                    min = dst;
+                    right = other;
+                }
+            }
+
+            if (right != null)
+            {
+                var rightPos = right.transform.position;
+
+                var middle = Vector3.Lerp(rightPos, leftPos, 0.5f);
+                
+                var pickup = Prefabs.Instance.Produce<FuelPickup>();
+                pickup.transform.position = middle;
+
+                candidates.Remove(left);
+                candidates.Remove(right);
+            }
+            
+        } 
+    }
+
+    private void SpawnHardFuel()
+    {
+        for (int i = 0; i < FuelPickupCount; i++)
+        {
+            var planet = _planets.Where(p => p.LandingPad == null).PickRandom();
+
+            var pickup = Prefabs.Instance.Produce<FuelPickup>();
+            pickup.transform.position = planet.transform.position + Vector3.up * planet.Diameter * 0.6f;
+        }
     }
 
     private void SelectShip()

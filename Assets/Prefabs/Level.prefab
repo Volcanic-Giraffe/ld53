@@ -100,6 +100,7 @@ MonoBehaviour:
   ringPrefab: {fileID: 2831888060389863464, guid: abf8beb836d26084ca1fed469f808b50,
     type: 3}
   FuelPickupCount: 12
+  FuelEasyPickupCount: 8
 --- !u!114 &2895317338354985963
 MonoBehaviour:
   m_ObjectHideFlags: 0
