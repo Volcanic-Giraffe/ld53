@@ -14,6 +14,8 @@ public class Ship : MonoBehaviour
     [SerializeField] public float HealthMax;
     [SerializeField] public float Health;
 
+    [SerializeField] public Sounds ShipSounds;
+    
     [Space]
     [SerializeField] public string Title;
     [TextArea]
@@ -133,6 +135,8 @@ public class Ship : MonoBehaviour
     {
         if (_invulnerabilityTimer > 0) return;
         _invulnerabilityTimer = 0.1f;
+
+        // ShipSounds.PlayRandom("impact");
         
         Health -= amount;
         Health = Mathf.Clamp(Health, 0f, HealthMax);

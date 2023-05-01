@@ -39,6 +39,7 @@ Transform:
   - {fileID: 1453992026335550434}
   - {fileID: 6851299860083358604}
   - {fileID: 2255286429424390818}
+  - {fileID: 3014970342914974168}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59,6 +60,7 @@ MonoBehaviour:
   Fuel: 30
   HealthMax: 100
   Health: 100
+  ShipSounds: {fileID: 7793289321142651134}
   Title: Gyro
   Description: 'Simple and reliable, without any fancy feedback loops, Gyro remains
     to be a favorite among hardcore couriers who just want to keep things easy and
@@ -295,6 +297,97 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2283138258307849233}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2867708224096480462
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2862093806041536174}
+    m_Modifications:
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415913058669723337, guid: e72186026f65b3c40a50cf769f3a476c,
+        type: 3}
+      propertyPath: m_Name
+      value: ShipSounds
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e72186026f65b3c40a50cf769f3a476c, type: 3}
+--- !u!4 &3014970342914974168 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1016536854632353046, guid: e72186026f65b3c40a50cf769f3a476c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2867708224096480462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7793289321142651134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5470596152882701360, guid: e72186026f65b3c40a50cf769f3a476c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2867708224096480462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05da4cc2c602fc74597c311aea03b658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4475040296500578265
 PrefabInstance:
   m_ObjectHideFlags: 0

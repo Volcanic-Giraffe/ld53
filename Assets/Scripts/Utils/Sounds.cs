@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Sounds : Singleton<Sounds>
+/// <summary>
+/// Non Singleton due to 3d. See ShipSounds and GlobalSounds prefabs.
+/// </summary>
+public class Sounds : MonoBehaviour
 {
     public AudioSource aSource;
 
