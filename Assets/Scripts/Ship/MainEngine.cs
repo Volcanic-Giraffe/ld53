@@ -36,7 +36,11 @@ public class MainEngine : MonoBehaviour
             return;
         }
 
-
+        if (LevelScenario.IsCompleted)
+        {
+            if (_thrust) StopThrust();
+            return;
+        }
 
         if ((Input.GetMouseButton(MouseButton) || Input.GetKey(Button)) && Ship.Fuel > 0f && !Ship.Standby)
         {

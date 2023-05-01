@@ -328,4 +328,6 @@ public class LevelScenario : Singleton<LevelScenario>
         
         GameOverUI.Instance.ShowFail("Your fuel is nuel");
     }
+
+    public static bool IsCompleted => Instance != null && Instance._completed;
 }

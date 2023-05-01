@@ -30,6 +30,8 @@ public class VectorControl : MonoBehaviour
     void FixedUpdate()
     {
         if (_ship.Standby) return;
+        if (LevelScenario.IsCompleted) return;
+        
         if(camSpace)
         {
             RB.AddForce(_cam.transform.right * _strafe.x * StrafePower * Time.fixedDeltaTime);

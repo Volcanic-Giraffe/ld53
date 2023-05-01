@@ -25,6 +25,7 @@ public class AlignToCamera : MonoBehaviour
     void FixedUpdate()
     {
         if (_ship.Standby) return;
+        if (LevelScenario.IsCompleted) return;
         var alignTarget = rb.position - _cam.transform.position;
         
         if ((Auto || Input.GetMouseButton(MouseButton)) && alignTarget != Vector3.zero)

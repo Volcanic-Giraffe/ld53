@@ -23,6 +23,8 @@ public class LandingPad : MonoBehaviour
     
     private void Update()
     {
+        if (LevelScenario.IsCompleted) return;
+        
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             Deploy();
