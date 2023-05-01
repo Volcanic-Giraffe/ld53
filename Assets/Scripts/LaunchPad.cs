@@ -77,6 +77,8 @@ public class LaunchPad : MonoBehaviour
 
             _ready = false;
             
+            _ship.ShipSounds.PlayRandom("land_a");
+            
             _ship.transform.DOMove(mountPoint.position, Consts.LaunchPadLandingTime).OnComplete(() =>
             {
                 LevelScenario.Instance.ReturnedToPad(this);

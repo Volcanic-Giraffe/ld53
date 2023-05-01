@@ -49,6 +49,8 @@ public class LandingPad : MonoBehaviour
 
             _visited = true;
 
+            _ship.ShipSounds.PlayRandom("land_b");
+            
             _ship.transform.DOMove(mountPoint.position, Consts.LandingPadLandingTime).OnComplete(() =>
             {
                 _shipLanded = true;
@@ -68,6 +70,9 @@ public class LandingPad : MonoBehaviour
         if (_ship == null) return;
         if (!_shipLanded) return;
 
+        
+        _ship.ShipSounds.PlayRandom("launch_b");
+        
         _ship.RB.isKinematic = false;
         _ship.Launch();
         _ship.RB.AddForce(_ship.transform.forward * Consts.LandingPadLaunchForce, ForceMode.VelocityChange);
