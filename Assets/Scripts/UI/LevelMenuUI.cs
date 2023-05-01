@@ -70,12 +70,16 @@ public class LevelMenuUI : Singleton<LevelMenuUI>
 
     private void OnContinueClicked()
     {
+        Global.Sounds.PlayRandom("click_b");
+        
         Hide();
     }
     
     private void OnRestartClicked()
     {
         if (PermanentUI.Instance.Loading) return;
+        
+        Global.Sounds.PlayRandom("click_b");
         
         DOTween.KillAll();
         PermanentUI.Instance.FadeIn(() =>
@@ -86,6 +90,8 @@ public class LevelMenuUI : Singleton<LevelMenuUI>
     private void OnExitClicked()
     {
         if (PermanentUI.Instance.Loading) return;
+        
+        Global.Sounds.PlayRandom("click_b");
         
         DOTween.KillAll();
         PermanentUI.Instance.FadeIn(() =>

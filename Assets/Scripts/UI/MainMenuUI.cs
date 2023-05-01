@@ -36,6 +36,8 @@ public class MainMenuUI : Singleton<MainMenuUI>
         if (_done) return;
         _done = true;
         
+        Global.Sounds.PlayRandom("click_b");
+        
         PermanentUI.Instance.FadeIn(() =>
         {
             SceneManager.LoadScene("LevelScene");

@@ -136,7 +136,7 @@ public class Ship : MonoBehaviour
         if (_invulnerabilityTimer > 0) return;
         _invulnerabilityTimer = 0.1f;
 
-        // ShipSounds.PlayRandom("impact");
+        ShipSounds.PlayRandom("impact_a");
         
         Health -= amount;
         Health = Mathf.Clamp(Health, 0f, HealthMax);

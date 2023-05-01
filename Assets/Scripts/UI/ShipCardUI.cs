@@ -31,6 +31,8 @@ public class ShipCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnCardClicked()
     {
+        Global.Sounds.PlayRandom("click_b");
+        
         MainMenuUI.Instance.OnCardClicked(this);
     }
 

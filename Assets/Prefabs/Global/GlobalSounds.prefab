@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &2987446029431818181
 AudioSource:
@@ -144,3 +144,4 @@ MonoBehaviour:
   aSource: {fileID: 2987446029431818181}
   sounds:
   - {fileID: 8300000, guid: e2114e51f24be4646bbe3dc702ebaf9a, type: 3}
+  - {fileID: 8300000, guid: 70c7f8e3d1089b748bb07ae3a7c38fa7, type: 3}

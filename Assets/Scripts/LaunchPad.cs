@@ -48,11 +48,13 @@ public class LaunchPad : MonoBehaviour
     {
         if (_ship == null) return;
 
+        _ship.ShipSounds.PlayRandom("launch_a");
+        
         _ship.RB.isKinematic = false;
         _ship.RB.AddForce(_ship.transform.forward * LaunchForce, ForceMode.VelocityChange);
         _ship.Launch();
         _ship = null;
-        
+
         LevelScenario.Instance.DeployedFromLaunchPad();
     }
 
