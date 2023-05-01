@@ -15,6 +15,8 @@ public class MainMenuUI : Singleton<MainMenuUI>
 
     private List<ShipCardUI> _cards;
 
+    private bool _done;
+    
     private void Awake()
     {
         _cards = FindObjectsOfType<ShipCardUI>().ToList();
@@ -31,10 +33,21 @@ public class MainMenuUI : Singleton<MainMenuUI>
 
     public void OnDeliverClicked()
     {
+        if (_done) return;
+        _done = true;
+        
         PermanentUI.Instance.FadeIn(() =>
         {
             SceneManager.LoadScene("LevelScene");
         });
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnDeliverClicked();
+        }
     }
 
     public void OnCardClicked(ShipCardUI selectedCard)

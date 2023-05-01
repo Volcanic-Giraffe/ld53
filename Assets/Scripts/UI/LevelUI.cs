@@ -38,12 +38,7 @@ public class LevelUI : Singleton<LevelUI>
     {
         if (_ship == null) return;
 
-        var ts = TimeSpan.FromSeconds(LevelScenario.Instance.PlayTime);
-        var mm = $"{ts.Minutes:D2}";
-        var ss = $"{ts.Seconds:D2}";
-        var ms = $"{ts.Milliseconds:D3}";
-        
-        timer.SetText($"{mm}:{ss}.{ms}");
+        timer.SetText(LevelScenario.Instance.PlayTimeFormatted);
         
         fuelBar.SetValueWithoutNotify(_ship.FuelRatio);
         hullBar.SetValueWithoutNotify(_ship.HealthRatio);

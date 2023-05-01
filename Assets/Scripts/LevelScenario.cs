@@ -24,7 +24,7 @@ public class DeliveryQuest
 
 public class LevelScenario : Singleton<LevelScenario>
 {
-    private readonly List<DeliveryQuest> Quests = new ()
+    private readonly List<DeliveryQuest> Quests = new()
     {
         new()
         {
@@ -33,14 +33,14 @@ public class LevelScenario : Singleton<LevelScenario>
             MustVisitLaunchPad = true,
             Type = QuestType.FloatingPackage
         },
-        new ()
+        new()
         {
             Count = 3,
             Completed = 0,
             MustVisitLaunchPad = true,
             Type = QuestType.LandingPad
         },
-        new ()
+        new()
         {
             Count = 3,
             Completed = 0,
@@ -60,14 +60,27 @@ public class LevelScenario : Singleton<LevelScenario>
 
     private bool _started;
     private bool _completed;
-    
-    
+
+
     private Ship _ship;
 
     private float _shipDiedTimer;
     private float _shipLowFuelTimer;
 
     public float PlayTime;
+
+    public string PlayTimeFormatted
+    {
+        get
+        {
+            var ts = TimeSpan.FromSeconds(PlayTime);
+            var mm = $"{ts.Minutes:D2}";
+            var ss = $"{ts.Seconds:D2}";
+            var ms = $"{ts.Milliseconds:D3}";
+
+            return $"{mm}:{ss}.{ms}";
+        }
+    }
 
     private List<Vector3> _occupiedPoints = new ();
     
