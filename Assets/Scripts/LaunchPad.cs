@@ -63,7 +63,7 @@ public class LaunchPad : MonoBehaviour
             _ship = ship;
 
             _ship.RB.isKinematic = true;
-            _ship.Dock();
+            _ship.Dock(true);
 
             _ready = false;
             

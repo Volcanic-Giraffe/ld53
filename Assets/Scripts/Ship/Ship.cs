@@ -32,6 +32,8 @@ public class Ship : MonoBehaviour
     public Planet ClosestPlanet { get => _closestPlanet; }
     private bool _standby = true;
     public bool Standby => _standby;
+    private bool _cameraInAss = true;
+    public bool CameraInAss => _cameraInAss;
 
     [SerializeField] float VelocityLimit = 20f;
     private Planet _closestPlanet;
@@ -58,11 +60,13 @@ public class Ship : MonoBehaviour
     public void Launch()
     {
         _standby = false;
+        _cameraInAss = false;
     }
     
-    public void Dock()
+    public void Dock(bool resetCamera = true)
     {
         _standby = true;
+        _cameraInAss = resetCamera;
     }
 
     private void Instance_OnGenerationDone()

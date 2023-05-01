@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "MainMenu") return;
         if (ship == null) return;
         
-        if (ship.Standby)
+        if (ship.CameraInAss)
         {
             currentDirection = (transform.position - ship.transform.position).normalized;
             transform.position = ship.transform.position - (ship.transform.forward * followDistance * 2f);
