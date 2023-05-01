@@ -108,9 +108,9 @@ public class Ship : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.impulse.magnitude > 3f)
+        if (other.impulse.magnitude > 1f)
         {
-            var dmgFormula = 10f + other.impulse.magnitude * 0.2f;
+            var dmgFormula = 10f + other.impulse.magnitude * 1.5f;
 
             DoDamage(dmgFormula);
         }
