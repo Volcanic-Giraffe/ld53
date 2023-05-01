@@ -43,4 +43,9 @@ public class FuelPickup : MonoBehaviour
             });
         }
     }
+    
+    private void OnDestroy()
+    {
+        transform.DOKill();
+    }
 }

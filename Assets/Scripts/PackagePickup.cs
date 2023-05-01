@@ -50,4 +50,9 @@ public class PackagePickup : MonoBehaviour
             });
         }
     }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
+    }
 }
