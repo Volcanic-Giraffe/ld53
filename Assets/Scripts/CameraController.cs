@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class CameraController : MonoBehaviour
     private float timer = 0f;
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenu") return;
+        
         ship = Objects.Instance.Ship;
         currentDirection = (transform.position - ship.transform.position).normalized;
     }
@@ -20,6 +23,8 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenu") return;
+        
         if (ship.Standby)
         {
             currentDirection = (transform.position - ship.transform.position).normalized;

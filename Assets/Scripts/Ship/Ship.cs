@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Ship : MonoBehaviour
 {
+    [SerializeField] public string Code;
+    
     [SerializeField] public float FuelMax;
     [SerializeField] public float Fuel;
 
@@ -37,7 +39,11 @@ public class Ship : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        Generator.Instance.OnGenerationDone += Instance_OnGenerationDone;
+
+        if (Generator.Instance != null)
+        {
+            Generator.Instance.OnGenerationDone += Instance_OnGenerationDone;
+        }
 
         Objects.Instance.Ship = this;
     }

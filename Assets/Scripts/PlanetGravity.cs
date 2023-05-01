@@ -15,11 +15,15 @@ public class PlanetGravity : MonoBehaviour
 
     void Start()
     {
+        if (ship == null) return;
+        
         ship = Objects.Instance.Ship.RB;
     }
 
     void FixedUpdate()
     {
+        if (ship == null) return;
+        
         Vector3 dist = transform.position - ship.position;
         Vector3 dir = dist.normalized;
         ship.AddForce((Time.fixedDeltaTime * dir * Gravity) / dist.sqrMagnitude);
