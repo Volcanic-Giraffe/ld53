@@ -40,13 +40,14 @@ public class LandingPad : MonoBehaviour
         if (other.CompareTag("Ship"))
         {
             var ship = other.GetComponentInParent<Ship>();
-
-            ship.RB.isKinematic = true;
-
             _ship = ship;
+
+            _ship.RB.isKinematic = true;
+            _ship.Dock();
+
             _visited = true;
 
-            ship.transform.DOMove(mountPoint.position, Consts.LandingPadLandingTime).OnComplete(() =>
+            _ship.transform.DOMove(mountPoint.position, Consts.LandingPadLandingTime).OnComplete(() =>
             {
                 _shipLanded = true;
                 
@@ -56,7 +57,7 @@ public class LandingPad : MonoBehaviour
                 
             });
 
-            ship.transform.DORotateQuaternion(mountPoint.rotation, Consts.LandingPadLandingTime * 0.5f);
+            _ship.transform.DORotateQuaternion(mountPoint.rotation, Consts.LandingPadLandingTime * 0.5f);
         }
     }
     
@@ -66,6 +67,7 @@ public class LandingPad : MonoBehaviour
         if (!_shipLanded) return;
 
         _ship.RB.isKinematic = false;
+        _ship.Launch();
         _ship.RB.AddForce(_ship.transform.forward * Consts.LandingPadLaunchForce, ForceMode.VelocityChange);
         _ship = null;
         _shipLanded = false;

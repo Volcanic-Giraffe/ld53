@@ -38,7 +38,7 @@ public class MainEngine : MonoBehaviour
 
 
 
-        if ((Input.GetMouseButton(MouseButton) || Input.GetKey(Button)) && Ship.Fuel > 0f)
+        if ((Input.GetMouseButton(MouseButton) || Input.GetKey(Button)) && Ship.Fuel > 0f && !Ship.Standby)
         {
             DoThrust();
         }

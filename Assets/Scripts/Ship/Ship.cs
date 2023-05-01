@@ -52,6 +52,11 @@ public class Ship : MonoBehaviour
     {
         _standby = false;
     }
+    
+    public void Dock()
+    {
+        _standby = true;
+    }
 
     private void Instance_OnGenerationDone()
     {

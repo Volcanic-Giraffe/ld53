@@ -25,6 +25,7 @@ public class LaunchPad : MonoBehaviour
         _ship.transform.rotation = transform.rotation;
 
         _ship.RB.isKinematic = true;
+        _ship.Dock();
     }
 
     private void Update()
@@ -59,19 +60,20 @@ public class LaunchPad : MonoBehaviour
         if (other.CompareTag("Ship"))
         {
             var ship = other.GetComponentInParent<Ship>();
-
-            ship.RB.isKinematic = true;
-
             _ship = ship;
+
+            _ship.RB.isKinematic = true;
+            _ship.Dock();
+
             _ready = false;
             
-            ship.transform.DOMove(mountPoint.position, Consts.LaunchPadLandingTime).OnComplete(() =>
+            _ship.transform.DOMove(mountPoint.position, Consts.LaunchPadLandingTime).OnComplete(() =>
             {
                 ship.Refuel(100f);
                 LevelScenario.Instance.ReturnedToPad(this);
             });
 
-            ship.transform.DORotateQuaternion(mountPoint.rotation, Consts.LaunchPadLandingTime * 0.5f);
+            _ship.transform.DORotateQuaternion(mountPoint.rotation, Consts.LaunchPadLandingTime * 0.5f);
         }
     }
     

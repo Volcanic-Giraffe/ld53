@@ -19,20 +19,21 @@ public class ShipCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        selector.gameObject.SetActive(true);
-        
         MainMenuController.Instance.SpinShip(LinkedShip.Code);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        selector.gameObject.SetActive(false);
-        
         MainMenuController.Instance.StopSpin(LinkedShip.Code);
     }
 
     public void OnCardClicked()
     {
         MainMenuUI.Instance.OnCardClicked(this);
+    }
+
+    public void SetSelected(bool selected)
+    {
+        selector.gameObject.SetActive(selected);
     }
 }
