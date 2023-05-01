@@ -54,7 +54,7 @@ public class EngineFx : MonoBehaviour
     {
         if (ratio < 0.25)
         {
-            asThrust.pitch = _pitchInitial * 2f;
+            asThrust.pitch = _pitchInitial * 1.5f;
             
             var emission =  mainPs.main;
             emission.startLifetime = _rateOriginal * 0.5f;
