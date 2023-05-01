@@ -37,7 +37,7 @@ public class AutoAlign : MonoBehaviour
                 alignTarget = -(_ship.ClosestPlanet.transform.position - transform.position);
             }
         }
-        if (alignTarget != Vector3.zero && !Input.GetMouseButton(1) && !Input.GetMouseButton(0))
+        if (alignTarget != Vector3.zero && !Input.GetMouseButton(1) && !Input.GetMouseButton(0) && !Input.GetKey(KeyCode.LeftShift))
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(alignTarget, _cam.transform.up), Time.fixedDeltaTime * AlignSpeed);
         }
