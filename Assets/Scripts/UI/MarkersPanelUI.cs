@@ -21,12 +21,13 @@ public class MarkersPanelUI : Singleton<MarkersPanelUI>
         _camera = Camera.main;
     }
 
-    public void AddMarker(Transform target)
+    public void AddMarker(Transform target, MarkerIcon iconType = MarkerIcon.Dot)
     {
         var marker = Prefabs.Instance.Produce<MarkerItemUI>();
 
         marker.Target = target;
         marker.transform.SetParentZero(transform);
+        marker.SetIcon(iconType);
         
         _markers.Add(marker);
     }

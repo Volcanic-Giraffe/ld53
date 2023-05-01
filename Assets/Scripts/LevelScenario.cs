@@ -118,10 +118,15 @@ public class LevelScenario : Singleton<LevelScenario>
             if (ActiveQuest.MustVisitLaunchPad)
             {
                 var pads = Objects.Instance.LaunchPads;
-            
-                pads.ForEach(p => p.SetReady(true));
+
+                foreach (var p in pads)
+                {
+                    MarkersPanelUI.Instance.AddMarker(p.transform, MarkerIcon.Crosshair);
+                    p.SetReady(true);
+                }
                 
                 StatusBarUI.Instance.Show("RETURN TO LAUNCH PAD");
+                
             }
             else
             {
@@ -209,7 +214,7 @@ public class LevelScenario : Singleton<LevelScenario>
             }
         }
 
-        MarkersPanelUI.Instance.AddMarker(package.transform);
+        MarkersPanelUI.Instance.AddMarker(package.transform, MarkerIcon.Envelope);
         ActiveQuest.Spawned += 1;
         
         _occupiedPoints.Add(package.transform.position );
@@ -222,7 +227,7 @@ public class LevelScenario : Singleton<LevelScenario>
 
         planet.AttachPad(landingPad);
         
-        MarkersPanelUI.Instance.AddMarker(landingPad.transform);
+        MarkersPanelUI.Instance.AddMarker(landingPad.transform, MarkerIcon.MailTarget);
         ActiveQuest.Spawned += 1;
     }
     
@@ -233,7 +238,7 @@ public class LevelScenario : Singleton<LevelScenario>
         
         package.transform.position = planet.transform.position + planet.transform.up * (planet.Diameter * 0.6f);
         
-        MarkersPanelUI.Instance.AddMarker(package.transform);
+        MarkersPanelUI.Instance.AddMarker(package.transform, MarkerIcon.Envelope);
         ActiveQuest.Spawned += 1;
     }
     
@@ -269,6 +274,8 @@ public class LevelScenario : Singleton<LevelScenario>
 
     public void ReturnedToPad(LaunchPad pad)
     {
+        MarkersPanelUI.Instance.RemoveMarker(pad.transform);
+        
         OnReturnedToLaunch?.Invoke();
 
         StatusBarUI.Instance.Hide();
