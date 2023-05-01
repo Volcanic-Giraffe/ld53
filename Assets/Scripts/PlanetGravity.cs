@@ -15,8 +15,6 @@ public class PlanetGravity : MonoBehaviour
 
     void Start()
     {
-        if (ship == null) return;
-        
         ship = Objects.Instance.Ship.RB;
     }
 
@@ -26,6 +24,7 @@ public class PlanetGravity : MonoBehaviour
         
         Vector3 dist = transform.position - ship.position;
         Vector3 dir = dist.normalized;
-        ship.AddForce((Time.fixedDeltaTime * dir * Gravity) / dist.sqrMagnitude);
+        var velocity = Mathf.Clamp(ship.velocity.magnitude / 5f, 1f, 3f);
+        ship.AddForce((Time.fixedDeltaTime * dir * Gravity  * velocity) / dist.sqrMagnitude);
     }
 }
