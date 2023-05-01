@@ -30,8 +30,18 @@ public class PackagePickup : MonoBehaviour
             
             var ship = other.GetComponentInParent<Ship>();
 
-            transform.DOMove(ship.transform.position, 0.23f);
-            transform.DOScale(0.1f, 0.23f).OnComplete(() =>
+            var duration = 0.27f;
+            
+            Permanent.Sounds.PlayRandom("pick_a");
+            
+            var tw = transform.DOMove(ship.transform.position, duration);
+            
+            tw.OnUpdate(() =>
+            {
+                tw.ChangeEndValue(ship.transform.position, true);
+            });
+
+            transform.DOScale(0.1f, duration).OnComplete(() =>
             {
                 ship.Refuel(fuelAmount);
                 

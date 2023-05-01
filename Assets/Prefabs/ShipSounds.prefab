@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aSource: {fileID: 1516133344447344843}
   sounds:
+  - {fileID: 8300000, guid: fb1f03a5de0e85f4c977f7ba7be57cf9, type: 3}
   - {fileID: 8300000, guid: 4d2918b22d352ed43a783aba5b7412f2, type: 3}
   - {fileID: 8300000, guid: c8925f8db2dfce44187904b5d6aaa123, type: 3}
   - {fileID: 8300000, guid: deb3e5dc4f1f2ff48bd6fc895275ece0, type: 3}
@@ -159,4 +160,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ef8f181367765534e8a6afdc77512d14, type: 3}
   - {fileID: 8300000, guid: bcdefa4cc9b6aed4b81ca711dfe4cc34, type: 3}
   - {fileID: 8300000, guid: 2686539c590f3f648b07564b9e0b72b5, type: 3}
+  - {fileID: 8300000, guid: 8cba0d65603ac524aa6dc61c4f48531e, type: 3}
+  - {fileID: 8300000, guid: f892bd4f40a8c2f48819346bf956c355, type: 3}
   - {fileID: 8300000, guid: 6f2cf03bff54aa5479d8977f5f463d95, type: 3}

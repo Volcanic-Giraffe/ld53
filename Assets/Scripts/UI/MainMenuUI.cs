@@ -36,7 +36,7 @@ public class MainMenuUI : Singleton<MainMenuUI>
         if (_done) return;
         _done = true;
         
-        Global.Sounds.PlayRandom("click_b");
+        Permanent.Sounds.PlayRandom("notify_a");
         
         PermanentUI.Instance.FadeIn(() =>
         {
