@@ -233,7 +233,7 @@ public class LevelScenario : Singleton<LevelScenario>
     
     private void SpawnOrbitalPackage()
     {
-        var package = Prefabs.Instance.Produce<PackagePickup>();
+        var package = Prefabs.Instance.Produce<PackagePickup>("PackagePickupHeavy");
         var planet = Objects.Instance.Planets.Where(p => p.LandingPad == null).PickRandom();
         
         package.transform.position = planet.transform.position + planet.transform.up * (planet.Diameter * 0.6f);
