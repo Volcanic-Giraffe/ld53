@@ -11,7 +11,8 @@ public class LevelUI : Singleton<LevelUI>
     [SerializeField] private TextMeshProUGUI deliveryProgress;
     [SerializeField] private TextMeshProUGUI deliveryLabel;
     [SerializeField] private TextMeshProUGUI speedBar;
-
+    [SerializeField] private TextMeshProUGUI timer;
+    
     private Ship _ship;
 
     private Color _colorGood = new Color(0.62f, 1f, 0.31f);
@@ -36,6 +37,13 @@ public class LevelUI : Singleton<LevelUI>
     private void Update()
     {
         if (_ship == null) return;
+
+        var ts = TimeSpan.FromSeconds(LevelScenario.Instance.PlayTime);
+        var mm = $"{ts.Minutes:D2}";
+        var ss = $"{ts.Seconds:D2}";
+        var ms = $"{ts.Milliseconds:D3}";
+        
+        timer.SetText($"{mm}:{ss}.{ms}");
         
         fuelBar.SetValueWithoutNotify(_ship.FuelRatio);
         hullBar.SetValueWithoutNotify(_ship.HealthRatio);

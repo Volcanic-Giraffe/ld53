@@ -67,6 +67,7 @@ public class LevelScenario : Singleton<LevelScenario>
     private float _shipDiedTimer;
     private float _shipLowFuelTimer;
 
+    public float PlayTime;
 
     private List<Vector3> _occupiedPoints = new ();
     
@@ -160,6 +161,11 @@ public class LevelScenario : Singleton<LevelScenario>
     {
         if (!_started) return;
         if (_completed) return;
+        
+        if (!LevelMenuUI.Instance.Visible)
+        {
+            PlayTime += Time.deltaTime;
+        }
         
         if (_ship.Health <= 0)
         {
