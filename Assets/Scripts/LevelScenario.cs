@@ -101,6 +101,7 @@ public class LevelScenario : Singleton<LevelScenario>
         if (Quests.Count == 0)
         {
             OnCompletedAllQuests?.Invoke();
+            _completed = true;
             return;
         }
 

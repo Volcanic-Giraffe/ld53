@@ -18,7 +18,11 @@ public class GameInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             DOTween.KillAll();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
+            PermanentUI.Instance.FadeIn(() =>
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            });
         }
     }
 }

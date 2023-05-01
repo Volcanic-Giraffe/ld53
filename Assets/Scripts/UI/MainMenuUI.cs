@@ -14,13 +14,19 @@ public class MainMenuUI : Singleton<MainMenuUI>
     private void Awake()
     {
         _cards = FindObjectsOfType<ShipCardUI>().ToList();
+    }
 
+    private void Start()
+    {
         OnCardClicked(_cards.Find(c=> c.LinkedShip.Code == "Hopper"));
     }
 
     public void OnDeliverClicked()
     {
-        SceneManager.LoadScene("LevelScene");
+        PermanentUI.Instance.FadeIn(() =>
+        {
+            SceneManager.LoadScene("LevelScene");
+        });
     }
 
     public void OnCardClicked(ShipCardUI selectedCard)

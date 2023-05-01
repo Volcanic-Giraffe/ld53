@@ -54,6 +54,10 @@ public class Generator : Singleton<Generator>
         yield return new WaitForEndOfFrame();
 
         OnGenerationDone?.Invoke();
+        
+        yield return new WaitForEndOfFrame();
+        
+        PermanentUI.Instance.FadeOut();
     }
 
     private void SelectShip()

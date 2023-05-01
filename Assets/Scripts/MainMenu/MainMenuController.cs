@@ -19,6 +19,8 @@ public class MainMenuController : Singleton<MainMenuController>
             // planet.Setup();
             planet.GenerateSurface();
         }
+        
+        PermanentUI.Instance.FadeOut();
     }
 
     private void Update()
