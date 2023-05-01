@@ -11,6 +11,7 @@ public class LevelMenuUI : Singleton<LevelMenuUI>
     [SerializeField] private RectTransform container;
 
     [SerializeField] private Button continueButton;
+    [SerializeField] private Button musicButton;
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitButton;
 
@@ -25,6 +26,7 @@ public class LevelMenuUI : Singleton<LevelMenuUI>
     {
         Cursor.lockState = CursorLockMode.Locked;
         continueButton.onClick.AddListener(OnContinueClicked);
+        musicButton.onClick.AddListener(OnMusicClicked);
         restartButton.onClick.AddListener(OnRestartClicked);
         exitButton.onClick.AddListener(OnExitClicked);
     }
@@ -75,6 +77,13 @@ public class LevelMenuUI : Singleton<LevelMenuUI>
         Hide();
     }
     
+    private void OnMusicClicked()
+    {
+        Permanent.Sounds.PlayRandom("click_c");
+
+        Music.Instance.ToggleMusic();
+    }
+
     private void OnRestartClicked()
     {
         if (PermanentUI.Instance.Loading) return;

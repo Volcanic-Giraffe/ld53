@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class Music : MonoBehaviour
+public class Music : Singleton<Music>
 {
     [SerializeField] private AudioSource source;
 
@@ -14,6 +14,8 @@ public class Music : MonoBehaviour
     private void Awake()
     {
         _volumeInitial = source.volume;
+
+        _isPlaying = source.volume > 0f;
     }
 
     // Update is called once per frame
@@ -21,19 +23,24 @@ public class Music : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            if (_isPlaying)
-            {
-                source.DOKill();
-                source.DOFade(0f, 0.2f);
+            ToggleMusic();
+        }
+    }
+
+    public void ToggleMusic()
+    {
+        if (_isPlaying)
+        {
+            source.DOKill();
+            source.DOFade(0f, 0.2f);
                 
-                _isPlaying = false;
-            }
-            else
-            {
-                source.DOKill();
-                source.DOFade(_volumeInitial, 0.2f);
-                _isPlaying = true;
-            }
+            _isPlaying = false;
+        }
+        else
+        {
+            source.DOKill();
+            source.DOFade(_volumeInitial, 0.2f);
+            _isPlaying = true;
         }
     }
 }

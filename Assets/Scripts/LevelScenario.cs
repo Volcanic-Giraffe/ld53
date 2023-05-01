@@ -330,4 +330,6 @@ public class LevelScenario : Singleton<LevelScenario>
     }
 
     public static bool IsCompleted => Instance != null && Instance._completed;
+
+    public static bool IsPaused => LevelMenuUI.Instance != null && LevelMenuUI.Instance.Visible;
 }

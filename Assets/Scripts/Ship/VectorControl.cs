@@ -30,7 +30,7 @@ public class VectorControl : MonoBehaviour
     void FixedUpdate()
     {
         if (_ship.Standby) return;
-        if (LevelScenario.IsCompleted) return;
+        if (LevelScenario.IsCompleted || LevelScenario.IsPaused) return;
         
         if(camSpace)
         {

@@ -27,7 +27,7 @@ public class AutoAlign : MonoBehaviour
     void FixedUpdate()
     {
         if (_ship.Standby) return;
-        if (LevelScenario.IsCompleted) return;
+        if (LevelScenario.IsCompleted || LevelScenario.IsPaused) return;
         var alignTarget = Vector3.zero;
         if (AlignToVelocity) alignTarget = RB.velocity;
         if (ReorientToClosePlanet)

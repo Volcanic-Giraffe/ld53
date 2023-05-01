@@ -36,7 +36,7 @@ public class MainEngine : MonoBehaviour
             return;
         }
 
-        if (LevelScenario.IsCompleted)
+        if (LevelScenario.IsCompleted || LevelScenario.IsPaused)
         {
             if (_thrust) StopThrust();
             return;

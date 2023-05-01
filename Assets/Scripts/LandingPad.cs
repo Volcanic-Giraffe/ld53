@@ -23,7 +23,7 @@ public class LandingPad : MonoBehaviour
     
     private void Update()
     {
-        if (LevelScenario.IsCompleted) return;
+        if (LevelScenario.IsCompleted || LevelScenario.IsPaused) return;
         
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {

@@ -31,7 +31,7 @@ public class GyroControl : MonoBehaviour
     private void Update()
     {
         if (_ship.Standby) return;
-        if (LevelScenario.IsCompleted) return;
+        if (LevelScenario.IsCompleted || LevelScenario.IsPaused) return;
         
         _rotation = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
