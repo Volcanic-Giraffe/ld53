@@ -67,6 +67,8 @@ public class LevelScenario : Singleton<LevelScenario>
     private float _shipDiedTimer;
     private float _shipLowFuelTimer;
 
+    private bool _lowFuelWarningReady;
+
     public float PlayTime;
 
     public string PlayTimeFormatted
@@ -193,6 +195,19 @@ public class LevelScenario : Singleton<LevelScenario>
         {
             _shipDiedTimer = Consts.GameOverDieTime;
         }
+
+        if (_ship.FuelRatio < 0.25f)
+        {
+            if (_lowFuelWarningReady)
+            {
+                _lowFuelWarningReady = false;
+                StatusBarUI.Instance.Show($"Low Fuel", 5f, true);
+            }
+        }
+        else
+        {
+            _lowFuelWarningReady = true;
+        }
         
         if (_ship.Fuel <= 0)
         {
@@ -267,17 +282,17 @@ public class LevelScenario : Singleton<LevelScenario>
 
         if (ActiveQuest.Type == QuestType.FloatingPackage && ActiveQuest.Completed == 0)
         {
-            StatusBarUI.Instance.Show($"Collect {ActiveQuest.Count} Lost Parcels", 9f);
+            StatusBarUI.Instance.Show($"Collect {ActiveQuest.Count} Lost Parcels", 30f);
         }
         
         if (ActiveQuest.Type == QuestType.LandingPad && ActiveQuest.Completed == 0)
         {
-            StatusBarUI.Instance.Show($"Deliver {ActiveQuest.Count} Mails", 9f);
+            StatusBarUI.Instance.Show($"Deliver {ActiveQuest.Count} Mails", 30f);
         }
         
         if (ActiveQuest.Type == QuestType.OrbitalPackage && ActiveQuest.Completed == 0)
         {
-            StatusBarUI.Instance.Show($"Collect {ActiveQuest.Count} Packages", 9f);
+            StatusBarUI.Instance.Show($"Collect {ActiveQuest.Count} Packages", 30f);
         }
     }
     
