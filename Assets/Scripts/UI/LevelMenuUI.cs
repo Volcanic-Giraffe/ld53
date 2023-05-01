@@ -23,6 +23,7 @@ public class LevelMenuUI : Singleton<LevelMenuUI>
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         continueButton.onClick.AddListener(OnContinueClicked);
         restartButton.onClick.AddListener(OnRestartClicked);
         exitButton.onClick.AddListener(OnExitClicked);
@@ -56,12 +57,14 @@ public class LevelMenuUI : Singleton<LevelMenuUI>
     public void Show()
     {
         if (PermanentUI.Instance.Loading) return;
-        
+
+        Cursor.lockState = CursorLockMode.None;
         container.gameObject.SetActive(true);
     }
     
     public void Hide()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         container.gameObject.SetActive(false);
     }
 

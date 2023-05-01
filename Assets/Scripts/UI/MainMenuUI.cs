@@ -22,6 +22,7 @@ public class MainMenuUI : Singleton<MainMenuUI>
 
     private IEnumerator Start()
     {
+        Cursor.lockState = CursorLockMode.None;
         yield return new WaitForSeconds(0.3f);
         yield return new WaitForEndOfFrame();
         
