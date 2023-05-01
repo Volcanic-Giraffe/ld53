@@ -17,7 +17,7 @@ public class PermanentUI : Singleton<PermanentUI>
     {
         "WASD / Space / Mouse",
         "42",
-        "Generating life the universe and everything"
+        "Generating life, the universe, and everything"
     };
 
     private void Awake()
