@@ -13,6 +13,11 @@ public class Ship : MonoBehaviour
 
     [SerializeField] public float HealthMax;
     [SerializeField] public float Health;
+
+    [Space]
+    [SerializeField] public string Title;
+    [TextArea]
+    [SerializeField] public string Description;
     
     public bool Died { get; set; }
     

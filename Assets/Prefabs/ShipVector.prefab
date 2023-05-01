@@ -63,6 +63,11 @@ MonoBehaviour:
   Fuel: 30
   HealthMax: 100
   Health: 100
+  Title: Hopper
+  Description: 'Hopper is kinda average. Hopper is kinda average. Hopper is kinda
+    average. Hopper is kinda average. Hopper is kinda average. Hopper is kinda average.
+    Hopper is kinda average. Hopper is kinda average. Hopper is kinda average. Hopper
+    is kinda average. '
   VelocityLimit: 80
 --- !u!54 &3620783379327781944
 Rigidbody:

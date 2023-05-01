@@ -59,6 +59,11 @@ MonoBehaviour:
   Fuel: 30
   HealthMax: 100
   Health: 100
+  Title: Gyro
+  Description: 'Gyro is the best ship. Are you with me? Gyro is the best ship. Are
+    you with me? Gyro is the best ship. Are you with me? Gyro is the best ship. Are
+    you with me? Gyro is the best ship. Are you with me? Gyro is the best ship. Are
+    you with me? Gyro is the best ship. Are you with me? '
   VelocityLimit: 80
 --- !u!54 &3620783379327781944
 Rigidbody:
