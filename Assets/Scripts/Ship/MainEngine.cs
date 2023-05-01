@@ -60,6 +60,10 @@ public class MainEngine : MonoBehaviour
             
             StopThrust();
         }
+        
+        
+        foreach(var ef in engineFx) ef.SetRatio(Ship.FuelRatio);
+        
         if (_thrust) _thrustTimer = Mathf.Min(_thrustTimer + Time.deltaTime, ThrustAccelerationTime);
         else { _thrustTimer = 0f; }
     }

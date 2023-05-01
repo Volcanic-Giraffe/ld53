@@ -9,8 +9,14 @@ public class EngineFx : MonoBehaviour
     [SerializeField] private ParticleSystem mainPs;
     [SerializeField] private AudioSource asThrust;
 
+    private float _rateOriginal;
+    private float _pitchInitial;
+    
     private void Awake()
     {
+        _pitchInitial = asThrust.pitch;
+        _rateOriginal = mainPs.main.startLifetime.constant;
+        
         if (asThrust.enabled)
         {
             asThrust.Play();
@@ -42,5 +48,24 @@ public class EngineFx : MonoBehaviour
     private void OnDestroy()
     {
         asThrust.DOKill();
+    }
+
+    public void SetRatio(float ratio)
+    {
+        if (ratio < 0.25)
+        {
+            asThrust.pitch = _pitchInitial * 2f;
+            
+            var emission =  mainPs.main;
+            emission.startLifetime = _rateOriginal * 0.5f;
+        }
+        else
+        {
+            asThrust.pitch = _pitchInitial;
+            
+            var emission =  mainPs.main;
+            emission.startLifetime = _rateOriginal;
+
+        }
     }
 }
