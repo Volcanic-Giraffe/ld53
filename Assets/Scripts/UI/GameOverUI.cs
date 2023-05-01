@@ -8,6 +8,7 @@ public class GameOverUI : Singleton<GameOverUI>
 {
     [Header("Win Screen:")]
     [SerializeField] private RectTransform winContainer;
+    [SerializeField] private TextMeshProUGUI timeField;
 
     [Header("Fail Screen:")]
     [SerializeField] private RectTransform failContainer;
@@ -33,6 +34,7 @@ public class GameOverUI : Singleton<GameOverUI>
     {
         winContainer.gameObject.SetActive(true);
         failContainer.gameObject.SetActive(false);
+        timeField.text = $"Total time: {LevelScenario.Instance.PlayTimeFormatted}";
     }
     
     public void ShowFail(string reason)
