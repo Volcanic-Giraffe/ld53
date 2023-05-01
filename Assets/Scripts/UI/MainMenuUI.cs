@@ -25,7 +25,7 @@ public class MainMenuUI : Singleton<MainMenuUI>
         yield return new WaitForSeconds(0.3f);
         yield return new WaitForEndOfFrame();
         
-        OnCardClicked(_cards.Find(c=> c.LinkedShip.Code == "Hopper"));
+        OnCardClicked(_cards.Find(c=> c.LinkedShip.Code == "Gyro"));
     }
 
     public void OnDeliverClicked()
