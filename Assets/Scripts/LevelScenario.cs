@@ -125,7 +125,7 @@ public class LevelScenario : Singleton<LevelScenario>
                     p.SetReady(true);
                 }
                 
-                StatusBarUI.Instance.Show("RETURN TO LAUNCH PAD");
+                StatusBarUI.Instance.Show("RETURN TO BASE STATION");
                 
             }
             else
@@ -248,12 +248,12 @@ public class LevelScenario : Singleton<LevelScenario>
 
         if (ActiveQuest.Type == QuestType.FloatingPackage && ActiveQuest.Completed == 0)
         {
-            StatusBarUI.Instance.Show($"Collect {ActiveQuest.Count} Parcels", 9f);
+            StatusBarUI.Instance.Show($"Collect {ActiveQuest.Count} Lost Parcels", 9f);
         }
         
         if (ActiveQuest.Type == QuestType.LandingPad && ActiveQuest.Completed == 0)
         {
-            StatusBarUI.Instance.Show($"Deliver {ActiveQuest.Count} Packages", 9f);
+            StatusBarUI.Instance.Show($"Deliver {ActiveQuest.Count} Mails", 9f);
         }
         
         if (ActiveQuest.Type == QuestType.OrbitalPackage && ActiveQuest.Completed == 0)
@@ -299,7 +299,7 @@ public class LevelScenario : Singleton<LevelScenario>
         _completed = true;
         StatusBarUI.Instance.Hide();
         
-        GameOverUI.Instance.ShowFail("Hull Damaged");
+        GameOverUI.Instance.ShowFail("You brocket your rocket");
     }
     
     public void ShipNoFuel()
@@ -307,6 +307,6 @@ public class LevelScenario : Singleton<LevelScenario>
         _completed = true;
         StatusBarUI.Instance.Hide();
         
-        GameOverUI.Instance.ShowFail("Low Fuel");
+        GameOverUI.Instance.ShowFail("Your fuel is nuel");
     }
 }
