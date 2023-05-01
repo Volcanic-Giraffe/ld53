@@ -42,12 +42,15 @@ public class MainEngine : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonDown(MouseButton) && Ship.Fuel <= 0f)
+        var inputDown = (Input.GetMouseButtonDown(MouseButton) || Input.GetKeyDown(Button));
+        var inputHold = (Input.GetMouseButton(MouseButton) || Input.GetKey(Button));
+        
+        if (inputDown && Ship.Fuel <= 0f)
         {
             Ship.ShipSounds.PlayRandom("chirp_a");
         }
         
-        if ((Input.GetMouseButton(MouseButton) || Input.GetKey(Button)) && Ship.Fuel > 0f && !Ship.Standby)
+        if (inputHold && Ship.Fuel > 0f && !Ship.Standby)
         {
             DoThrust();
         }
