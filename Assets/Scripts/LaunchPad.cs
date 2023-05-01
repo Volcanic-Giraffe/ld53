@@ -40,7 +40,7 @@ public class LaunchPad : MonoBehaviour
         if (_ship != null)
         {
             _ship.Refuel(5f * Time.deltaTime);
-            _ship.Heal(10f * Time.deltaTime);
+            _ship.Heal(20f * Time.deltaTime);
         }
     }
 

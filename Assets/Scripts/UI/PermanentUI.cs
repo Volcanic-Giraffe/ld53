@@ -17,9 +17,10 @@ public class PermanentUI : Singleton<PermanentUI>
     
     private List<string> LoadingMessages = new()
     {
-        "WASD / Space / Mouse",
         "42",
-        "Generating life, the universe, and everything"
+        "Generating life, the universe, and everything",
+        "Take it slow!",
+        "Yellow barrels restore Fuel",
     };
 
     private void Awake()
