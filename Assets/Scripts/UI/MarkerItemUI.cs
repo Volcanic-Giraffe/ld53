@@ -28,6 +28,8 @@ public class MarkerItemUI : MonoBehaviour
     public Transform Target { get; set; }
 
     private Vector2 _targetPos;
+
+    private Color _hoverColor = new Color(1, 1, 1, 0.3f);
     
     public void SetDistance(float dst)
     {
@@ -59,5 +61,18 @@ public class MarkerItemUI : MonoBehaviour
     public void SetPosition(Vector2 screenPos)
     {
         _targetPos = screenPos;
+
+        var mid = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+        
+        var dst = Vector2.Distance(screenPos, mid);
+
+        if (dst < 100f)
+        {
+            icon.color = _hoverColor;
+        }
+        else
+        {
+            icon.color = Color.white;
+        }
     }
 }
