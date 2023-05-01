@@ -2,13 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuUI : Singleton<MainMenuUI>
 {
     [SerializeField] private RectTransform container;
-
+    [SerializeField] private TextMeshProUGUI shipTitle;
+    [SerializeField] private TextMeshProUGUI shipDescription;
+    
     private List<ShipCardUI> _cards;
 
     private void Awake()
@@ -16,8 +19,11 @@ public class MainMenuUI : Singleton<MainMenuUI>
         _cards = FindObjectsOfType<ShipCardUI>().ToList();
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForEndOfFrame();
+        
         OnCardClicked(_cards.Find(c=> c.LinkedShip.Code == "Hopper"));
     }
 
@@ -39,5 +45,10 @@ public class MainMenuUI : Singleton<MainMenuUI>
         {
             card.SetSelected(card == selectedCard);
         }
+        
+        shipTitle.SetText(selectedCard.LinkedShip.Title);
+        shipDescription.SetText(selectedCard.LinkedShip.Description);
+        
+        MainMenuController.Instance.SpinShip(code);
     }
 }

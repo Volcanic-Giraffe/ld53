@@ -9,22 +9,24 @@ using UnityEngine.UI;
 public class ShipCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI shipLabel;
+    [SerializeField] private Image preSelector;
     [SerializeField] private Image selector;
     [SerializeField] public Ship LinkedShip;
     
     private void Awake()
     {
         selector.gameObject.SetActive(false);
+        preSelector.gameObject.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        MainMenuController.Instance.SpinShip(LinkedShip.Code);
+        preSelector.gameObject.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        MainMenuController.Instance.StopSpin(LinkedShip.Code);
+        preSelector.gameObject.SetActive(false);
     }
 
     public void OnCardClicked()
@@ -34,6 +36,7 @@ public class ShipCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void SetSelected(bool selected)
     {
+        preSelector.gameObject.SetActive(false);
         selector.gameObject.SetActive(selected);
     }
 }

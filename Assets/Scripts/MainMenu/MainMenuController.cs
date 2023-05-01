@@ -34,21 +34,9 @@ public class MainMenuController : Singleton<MainMenuController>
 
     public void SpinShip(string code)
     {
-        var cont = _shipsContainers.Find(c => c.Ship.Code == code);
-
-        if (cont != null)
+        foreach (var c in _shipsContainers)
         {
-            cont.SetSpinning(true);
-        }
-    }
-    
-    public void StopSpin(string code)
-    {
-        var cont = _shipsContainers.Find(c => c.Ship.Code == code);
-
-        if (cont != null)
-        {
-            cont.SetSpinning(false);
+            c.SetSpinning(c.Ship.Code == code);
         }
     }
 }
