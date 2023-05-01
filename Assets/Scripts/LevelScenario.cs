@@ -248,7 +248,17 @@ public class LevelScenario : Singleton<LevelScenario>
 
         if (ActiveQuest.Type == QuestType.FloatingPackage && ActiveQuest.Completed == 0)
         {
-            StatusBarUI.Instance.Show($"Collect {ActiveQuest.Count} Packages");
+            StatusBarUI.Instance.Show($"Collect {ActiveQuest.Count} Parcels", 9f);
+        }
+        
+        if (ActiveQuest.Type == QuestType.LandingPad && ActiveQuest.Completed == 0)
+        {
+            StatusBarUI.Instance.Show($"Deliver {ActiveQuest.Count} Packages", 9f);
+        }
+        
+        if (ActiveQuest.Type == QuestType.OrbitalPackage && ActiveQuest.Completed == 0)
+        {
+            StatusBarUI.Instance.Show($"Collect {ActiveQuest.Count} Packages", 9f);
         }
     }
     
