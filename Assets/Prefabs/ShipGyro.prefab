@@ -60,10 +60,11 @@ MonoBehaviour:
   HealthMax: 100
   Health: 100
   Title: Gyro
-  Description: 'Gyro is the best ship. Are you with me? Gyro is the best ship. Are
-    you with me? Gyro is the best ship. Are you with me? Gyro is the best ship. Are
-    you with me? Gyro is the best ship. Are you with me? Gyro is the best ship. Are
-    you with me? Gyro is the best ship. Are you with me? '
+  Description: 'Simple and reliable, without any fancy feedback loops, Gyro remains
+    to be a favorite among hardcore couriers who just want to keep things easy and
+    understandable. Gyro motto is: If you fly bad - it''s only your fault. Still,
+    this ship can work wonders in hands of people who love it.'
+  Controls: "LMB/Space - Thrust\r\nRMB - Align to camera\r\nWASD/Arrows - Rotate\r"
   VelocityLimit: 80
 --- !u!54 &3620783379327781944
 Rigidbody:

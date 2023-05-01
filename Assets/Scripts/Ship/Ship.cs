@@ -18,7 +18,9 @@ public class Ship : MonoBehaviour
     [SerializeField] public string Title;
     [TextArea]
     [SerializeField] public string Description;
-    
+    [TextArea]
+    [SerializeField] public string Controls;
+
     public bool Died { get; set; }
     
     public float FuelRatio => FuelMax > 0 ? Fuel / FuelMax : 0f;

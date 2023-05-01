@@ -64,10 +64,13 @@ MonoBehaviour:
   HealthMax: 100
   Health: 100
   Title: Hopper
-  Description: 'Hopper is kinda average. Hopper is kinda average. Hopper is kinda
-    average. Hopper is kinda average. Hopper is kinda average. Hopper is kinda average.
-    Hopper is kinda average. Hopper is kinda average. Hopper is kinda average. Hopper
-    is kinda average. '
+  Description: An attempt on delivery modernization, Hopper has a retro thruster,
+    powerful lateral control and a glitchy landing computer. It also auto-rotates
+    towards the course, which annoys hypercontrolling people to no end. It really
+    shines in landing operations and planetary hopping, hence the name. Just feel
+    the flow and glide!
+  Controls: "LMB/Space - Prograde Thrust \r\nRMB/Shift - Retrograde Thrust\r\nWASD/Arrows
+    - Directional Strafe "
   VelocityLimit: 80
 --- !u!54 &3620783379327781944
 Rigidbody:

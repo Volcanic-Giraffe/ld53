@@ -11,7 +11,8 @@ public class MainMenuUI : Singleton<MainMenuUI>
     [SerializeField] private RectTransform container;
     [SerializeField] private TextMeshProUGUI shipTitle;
     [SerializeField] private TextMeshProUGUI shipDescription;
-    
+    [SerializeField] private TextMeshProUGUI shipControls;
+
     private List<ShipCardUI> _cards;
 
     private void Awake()
@@ -48,7 +49,8 @@ public class MainMenuUI : Singleton<MainMenuUI>
         
         shipTitle.SetText(selectedCard.LinkedShip.Title);
         shipDescription.SetText(selectedCard.LinkedShip.Description);
-        
+        shipControls.SetText(selectedCard.LinkedShip.Controls);
+
         MainMenuController.Instance.SpinShip(code);
     }
 }
