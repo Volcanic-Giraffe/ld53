@@ -7,6 +7,7 @@ using UnityEngine;
 public class PackagePickup : MonoBehaviour
 {
     [SerializeField] private Transform artGroup;
+    [SerializeField] private float fuelAmount;
     
     private bool _collected;
 
@@ -32,7 +33,7 @@ public class PackagePickup : MonoBehaviour
             transform.DOMove(ship.transform.position, 0.23f);
             transform.DOScale(0.1f, 0.23f).OnComplete(() =>
             {
-                ship.Refuel(100f);
+                ship.Refuel(fuelAmount);
                 
                 LevelScenario.Instance.PackagePicked(this);                
                 Destroy(gameObject,0.01f);
