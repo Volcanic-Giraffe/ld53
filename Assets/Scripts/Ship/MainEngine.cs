@@ -16,9 +16,12 @@ public class MainEngine : MonoBehaviour
     private float _thrustTimer;
     [SerializeField] private int MouseButton;
     [SerializeField] private KeyCode Button;
+    [SerializeField] private string Axis;
 
     [SerializeField] private EngineFx[] engineFx;
 
+    private float _thrustInput;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -44,13 +47,22 @@ public class MainEngine : MonoBehaviour
 
         var inputDown = (Input.GetMouseButtonDown(MouseButton) || Input.GetKeyDown(Button));
         var inputHold = (Input.GetMouseButton(MouseButton) || Input.GetKey(Button));
+
+        if (inputHold)
+        {
+            _thrustInput = 1.0f;
+        }
+        else
+        {
+            _thrustInput = Input.GetAxis(Axis);
+        }
         
         if (inputDown && Ship.Fuel <= 0f)
         {
             Ship.ShipSounds.PlayRandom("chirp_a");
         }
         
-        if (inputHold && Ship.Fuel > 0f && !Ship.Standby)
+        if (_thrustInput > 0f && Ship.Fuel > 0f && !Ship.Standby)
         {
             DoThrust();
         }
@@ -88,7 +100,9 @@ public class MainEngine : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Ship.Fuel -= CurrentThrustPower * 2f * (1f + _thrustTimer) * Time.deltaTime;
-        RB.AddForce(transform.forward * CurrentThrustPower * EngineImpulse * Time.fixedDeltaTime, ForceMode.Acceleration);
+        var thrustPower = CurrentThrustPower * _thrustInput;
+        
+        Ship.Fuel -= thrustPower * 2f * (1f + _thrustTimer) * Time.deltaTime;
+        RB.AddForce(transform.forward * thrustPower * EngineImpulse * Time.fixedDeltaTime, ForceMode.Acceleration);
     }
 }

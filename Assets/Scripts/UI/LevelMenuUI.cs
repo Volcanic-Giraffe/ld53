@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -33,7 +34,7 @@ public class LevelMenuUI : Singleton<LevelMenuUI>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("Menu"))
         {
             if (Visible)
             {
@@ -62,6 +63,9 @@ public class LevelMenuUI : Singleton<LevelMenuUI>
 
         Cursor.lockState = CursorLockMode.None;
         container.gameObject.SetActive(true);
+        
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
     }
     
     public void Hide()

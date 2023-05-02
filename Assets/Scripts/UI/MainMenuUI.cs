@@ -46,7 +46,20 @@ public class MainMenuUI : Singleton<MainMenuUI>
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        var padX = Input.GetAxis("Pad Horizontal");
+        var mainX = Input.GetAxis("Horizontal");
+
+        if (padX > 0.9f || mainX > 0.9f)
+        {
+            OnCardClicked(_cards[0]);
+        }
+
+        if (padX < -0.9f || mainX < -0.9f)
+        {
+            OnCardClicked(_cards[1]);
+        }
+        
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Accept"))
         {
             OnDeliverClicked();
         }

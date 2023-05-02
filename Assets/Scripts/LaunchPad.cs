@@ -32,7 +32,7 @@ public class LaunchPad : MonoBehaviour
     {
         if (LevelScenario.IsCompleted || LevelScenario.IsPaused) return;
         
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (Inputs.DeployAction)
         {
             Deploy();
         }

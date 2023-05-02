@@ -38,7 +38,12 @@ public class AutoAlign : MonoBehaviour
                 alignTarget = -(_ship.ClosestPlanet.transform.position - transform.position);
             }
         }
-        if (alignTarget != Vector3.zero && !Input.GetMouseButton(1) && !Input.GetMouseButton(0) && !Input.GetKey(KeyCode.LeftShift))
+
+        var tForward = Input.GetAxis("Thrust Forward");
+        var tBackwards = Input.GetAxis("Thrust Backwards");
+        var joyInput = tForward != 0 || tBackwards != 0;
+        
+        if (alignTarget != Vector3.zero && !Input.GetMouseButton(1) && !Input.GetMouseButton(0) && !Input.GetKey(KeyCode.LeftShift) && !joyInput)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(alignTarget, _cam.transform.up), Time.fixedDeltaTime * AlignSpeed);
         }

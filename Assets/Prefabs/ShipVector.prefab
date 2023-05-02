@@ -162,6 +162,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   MouseButton: 0
   Button: 32
+  Axis: Thrust Forward
   engineFx:
   - {fileID: 7019022365381298629}
   - {fileID: 4693436507726219784}
@@ -219,6 +220,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   MouseButton: 1
   Button: 304
+  Axis: Thrust Backwards
   engineFx:
   - {fileID: 6569127715090012222}
 --- !u!114 &5635904980444869047
